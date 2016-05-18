@@ -119,131 +119,13 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the go~mus API! You can use our API to access go~mus API endpoints, which can get information on various museums, exhibitions and products in our database.</p>
+<p>Welcome to the go~mus API! You can use our API to access go~mus API endpoints, which can get information on various museums, exhibitions, products and tickets in our database.</p>
 
-<p>We have language bindings in Shell and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h1 id="reseller-api">Reseller API</h1>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to contribute.</p>
+<p>The Reseller API allows you to directly sell products to customers using the go~mus API.</p>
 
-<h1 id="authentication">Authentication</h1>
-
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>go~mus uses API keys to allow access to the API. You can request a new go~mus API key by email.</p>
-
-<p>go~mus expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: Bearer meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="museums">Museums</h1>
-
-<h2 id="get-all-museums">Get All Museums</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v3/smart/museums"</span>
-  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"museums"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"cms_approach"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cms_contact"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cms_detail_infos"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cms_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cms_opening_hours"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cms_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cms_short_infos"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cms_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-16T09:17:16+01:00"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"is_archived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hamburger Kunsthalle"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hamburger Kunsthalle"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"article"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demo.gomus.de/production/museums/56/article/ansichten-der-hamburger-kunsthalle--7-.jpg?1450253834"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"copyright_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demo.gomus.de/production/museums/56/detail/ansichten-der-hamburger-kunsthalle--7-.jpg?1450253834"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demo.gomus.de/production/museums/56/preview/ansichten-der-hamburger-kunsthalle--7-.jpg?1450253834"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"teaser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demo.gomus.de/production/museums/56/teaser/ansichten-der-hamburger-kunsthalle--7-.jpg?1450253834"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demo.gomus.de/production/museums/56/thumbnail/ansichten-der-hamburger-kunsthalle--7-.jpg?1450253834"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-16T09:45:38+01:00"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all museums.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://demo.gomus.de/api/v3/smart/museums</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<p>See API reference. TODO: link to v3.html (raml)</p>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-          <h1 id="errors">Errors</h1>
-
-<p>The go~mus API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The API endpoint requested is for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified record could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access an API endpoint with an invalid method</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too much! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
-</tr>
-</tbody></table>
+<p>See <a href="reseller_api.html">detailed documentation on Reseller API</a>.</p>
 
       </div>
       <div class="dark-box">

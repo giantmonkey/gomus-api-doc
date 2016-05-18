@@ -1,0 +1,413 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>go~mus API Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="reseller_api" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://gomus.de'>go~mus</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the go~mus API! You can use our API to access go~mus API endpoints, which can get information on various museums, exhibitions, products and tickets in our database.</p>
+
+<p>We have examples using curl! You can view code examples in the dark area to the right.</p>
+
+<h1 id="preparation">Preparation</h1>
+
+<p>Before you can use the go~mus API, you will have to register a user account with an API key. Please talk to your contact person in order to get access.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+</blockquote>
+
+<p>go~mus expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">Authorization: Bearer meowmeowmeow</code></p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
+
+<h1 id="tickets">Tickets</h1>
+
+<p>First you will probably want to get all online sellable tickets.</p>
+
+<h2 id="get-all-tickets">Get All Tickets</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://smb-staging.gomus.de/api/v3/tickets"</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"tickets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"after_sale_information"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gruppe"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quota_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"after_sale_information"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sch\u00fcler"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quota_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all tickets.</p>
+
+<p>Please pay special attention to the mentioned quota_ids. You will need these to query the quota limits.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://smb-staging.gomus.de/api/v3/tickets</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<ul>
+<li><p>by_museum_id (Integer), only return ticktes for this museum</p></li>
+<li><p>by_exhibition_id (Integer), only return tickets for this exhibition</p></li>
+<li><p>valid_at (Date), default: today, only return tickets that are valid on this date</p></li>
+</ul>
+
+<h1 id="quotas">Quotas</h1>
+
+<p>The amount of tickets that can be sold are limited by quotas. In most cases a ticket will belong to a single quota and
+a single quota will reference many tickets.</p>
+
+<p><img src="http://yuml.me/a43d856c" /></p>
+
+<p>By querying that quota we know how many tickets can still be sold.</p>
+
+<aside class="notice">
+When a ticket belongs to multiple quotas then all referenced quotas need to be queried. The ticket can only be sold when there is enough space in all quotas.
+</aside>
+
+<h2 id="get-quota-capacities">Get Quota Capacities</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://smb-staging.gomus.de/api/v3/shop/capacities?quota_id=1&amp;date=2017-03-02"</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"2017-03-02 11:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 11:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 12:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 12:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 13:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 13:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 14:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 14:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 15:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 15:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 16:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"2017-03-02 16:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all capacities for a single quota. For each time slot the remaining capacity is listed.</p>
+
+<p>For a dayticket there may be only one slot (the whole day).</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://smb-staging.gomus.de/api/v3/shop/capacities?quota_id=1&amp;date=2017-03-02</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<ul>
+<li><p>quota_id (Integer)</p></li>
+<li><p>date (Date)</p></li>
+</ul>
+
+<h1 id="orders">Orders</h1>
+
+<p>Finally we want to order several tickets. For each ticket we need to specify the quantity and the timeslot.</p>
+
+<p>The server-side will do a final validation and return whether our order was successful.
+In success case a JSON with the barcodes will be returned.</p>
+
+<h2 id="definition-of-order">Definition of Order</h2>
+
+<p>An order is defined by it&rsquo;s attributes.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"payment_mode_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"order_items_attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"orderable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TicketSale"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"orderable_attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"ticket_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02 12:30"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>There are the <code class="prettyprint">payment_mode_id</code> and the <code class="prettyprint">order_items_attributes</code>, which in turn describe the individual order items.</p>
+
+<aside class="notice">
+`payment_mode_id` needs to be `6` for correct collective billing.
+</aside>
+
+<p>Regarding <code class="prettyprint">order_items_attributes</code>, first there is the <code class="prettyprint">quantity</code> and the <code class="prettyprint">orderable_type</code> (&ldquo;TicketSale&rdquo; for tickets).
+The <code class="prettyprint">orderable_attributes</code> contain specific attributes for the orderable, in this case a ticket sale. Here we specified Ticket #4 at timeslot 2017-03-02 12:30.</p>
+
+<ul>
+<li>start_at describes the time slot (for daytickets the time part will be 00:00).</li>
+</ul>
+
+<h2 id="post-order">Post Order</h2>
+
+<p>You can make a legally binding sale by doing a HTTP POST request to the go~mus API.</p>
+
+<p>A final validation check will be made. Either all order items are bought or none.
+In case of errors you will get error messages back. In case of success you will get the barcodes.</p>
+
+<blockquote>
+<p>Write definition of order into /tmp/orders.json before executing shell command.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://smb-staging.gomus.de/api/v3/cash_point/orders"</span>
+  -XPOST --data <span class="s2">"@/tmp/orders.json"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-31T09:40:11+02:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orderable"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"barcodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"403000200002-5"</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02T00:00:00+01:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"after_sale_information"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;G\u00fcltig f\u00fcr einmaligen Eintritt innerhalb von 2 Monaten ab Kaufdatum&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erwachsener | adult"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.0</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"orderable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TicketSale"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"payment_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<aside class="success">
+Remember — a happy api user is an authenticated api user!
+</aside>
+
+<h2 id="barcodes">Barcodes</h2>
+
+<p>Each ticket sale will a have one barcode per quantity. Each barcode can be validated and devalued separately.</p>
+
+<p>The barcodes are supposed to be printed on paper. One barcode per sheet.</p>
+
+<p>The barcodes need to be encoded as <a href="https://en.wikipedia.org/wiki/Code_39">CODE 39</a>, so that they can be scanned.
+Please pay special attention to the required quiet zone and minimal size requirements. You may find an example printout <a href="images/ticket-pdf-example.pdf">here</a>.</p>
+
+          <h1 id="errors">Errors</h1>
+
+<p>The go~mus API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The API endpoint requested is for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified record could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access an API endpoint with an invalid method</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too much! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
