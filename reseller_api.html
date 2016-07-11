@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>go~mus API Documentation</title>
+    <title>go~mus Reseller API Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="reseller_api" data-languages="[&quot;shell&quot;]">
+  <body class="reseller_api" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,7 +101,6 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -111,21 +110,21 @@
       </div>
         <ul class="toc-footer">
             <li><a href='https://gomus.de'>go~mus</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        <h1 id="preparation">Preparation</h1>
 
-<p>Welcome to the go~mus API! You can use our API to access go~mus API endpoints, which can get information on various museums, exhibitions, products and tickets in our database.</p>
+<p>Before you can use the go~mus reseller API to create valid orders, you will have to register a user account with an API key. Please talk to your contact person in order to get access.</p>
 
-<p>We have examples using curl! You can view code examples in the dark area to the right.</p>
+<aside class="success">
+Remember — a happy api user is an authenticated api user!
+</aside>
 
-<h1 id="preparation">Preparation</h1>
-
-<p>Before you can use the go~mus API, you will have to register a user account with an API key. Please talk to your contact person in order to get access.</p>
+<p>See <a href="public_api.html">detailed documentation on Public API</a> for information on how to request the basic data for events, tours and tickets.</p>
 
 <h1 id="authentication">Authentication</h1>
 
@@ -141,7 +140,7 @@ curl <span class="s2">"api_endpoint_here"</span>
 <p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
 </blockquote>
 
-<p>go~mus expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>go~mus expects the API key to be included in all reseller API requests to the server in a header that looks like the following:</p>
 
 <p><code class="prettyprint">Authorization: Bearer meowmeowmeow</code></p>
 
@@ -149,218 +148,530 @@ curl <span class="s2">"api_endpoint_here"</span>
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-<h1 id="tickets">Tickets</h1>
-
-<p>First you will probably want to get all online sellable tickets.</p>
-
-<h2 id="get-all-tickets">Get All Tickets</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://smb-staging.gomus.de/api/v3/tickets"</span>
-  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"tickets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"after_sale_information"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gruppe"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"quota_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"after_sale_information"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sch\u00fcler"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"quota_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all tickets.</p>
-
-<p>Please pay special attention to the mentioned quota_ids. You will need these to query the quota limits.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://smb-staging.gomus.de/api/v3/tickets</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<ul>
-<li><p>by_museum_id (Integer), only return ticktes for this museum</p></li>
-<li><p>by_exhibition_id (Integer), only return tickets for this exhibition</p></li>
-<li><p>valid_at (Date), default: today, only return tickets that are valid on this date</p></li>
-</ul>
-
-<h1 id="quotas">Quotas</h1>
-
-<p>The amount of tickets that can be sold are limited by quotas. In most cases a ticket will belong to a single quota and
-a single quota will reference many tickets.</p>
-
-<p><img src="http://yuml.me/a43d856c" /></p>
-
-<p>By querying that quota we know how many tickets can still be sold.</p>
-
-<aside class="notice">
-When a ticket belongs to multiple quotas then all referenced quotas need to be queried. The ticket can only be sold when there is enough space in all quotas.
-</aside>
-
-<h2 id="get-quota-capacities">Get Quota Capacities</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://smb-staging.gomus.de/api/v3/shop/capacities?quota_id=1&amp;date=2017-03-02"</span>
-  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"2017-03-02 11:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 11:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 12:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 12:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 13:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 13:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 14:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 14:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 15:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 15:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 16:00:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"2017-03-02 16:30:00 +0100"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all capacities for a single quota. For each time slot the remaining capacity is listed.</p>
-
-<p>For a dayticket there may be only one slot (the whole day).</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://smb-staging.gomus.de/api/v3/shop/capacities?quota_id=1&amp;date=2017-03-02</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<ul>
-<li><p>quota_id (Integer)</p></li>
-<li><p>date (Date)</p></li>
-</ul>
-
 <h1 id="orders">Orders</h1>
 
-<p>Finally we want to order several tickets. For each ticket we need to specify the quantity and the timeslot.</p>
+<p>An order is the final result of a checkout process, e.g. like in normal online shops. Every ticket sale or event booking is wrapped into items in a cart and sent to the server for validation.</p>
 
 <p>The server-side will do a final validation and return whether our order was successful.
-In success case a JSON with the barcodes will be returned.</p>
+In a success case a JSON with the valid order will be returned.</p>
 
-<h2 id="definition-of-order">Definition of Order</h2>
+<p>Note: the payment handling, including access to third party tools, might differ depending on your API plan.</p>
 
-<p>An order is defined by it&rsquo;s attributes.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"payment_mode_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"order_items_attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"orderable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TicketSale"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"orderable_attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"ticket_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02 12:30"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<h2 id="list-of-exisiting-orders">List of exisiting orders</h2>
 
-<p>There are the <code class="prettyprint">payment_mode_id</code> and the <code class="prettyprint">order_items_attributes</code>, which in turn describe the individual order items.</p>
+<p>Existing orders in your account can be accessed at the orders index endpoint:</p>
 
-<aside class="notice">
-`payment_mode_id` needs to be `6` for correct collective billing.
-</aside>
-
-<p>Regarding <code class="prettyprint">order_items_attributes</code>, first there is the <code class="prettyprint">quantity</code> and the <code class="prettyprint">orderable_type</code> (&ldquo;TicketSale&rdquo; for tickets).
-The <code class="prettyprint">orderable_attributes</code> contain specific attributes for the orderable, in this case a ticket sale. Here we specified Ticket #4 at timeslot 2017-03-02 12:30.</p>
-
-<ul>
-<li>start_at describes the time slot (for daytickets the time part will be 00:00).</li>
-</ul>
-
-<h2 id="post-order">Post Order</h2>
-
-<p>You can make a legally binding sale by doing a HTTP POST request to the go~mus API.</p>
-
-<p>A final validation check will be made. Either all order items are bought or none.
-In case of errors you will get error messages back. In case of success you will get the barcodes.</p>
-
-<blockquote>
-<p>Write definition of order into /tmp/orders.json before executing shell command.</p>
-</blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://smb-staging.gomus.de/api/v3/cash_point/orders"</span>
-  -XPOST --data <span class="s2">"@/tmp/orders.json"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/orders</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/orders"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3944805</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aniq532VCewghH2mUtEnng"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"is_valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">4500</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reference"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-28T22:17:46+02:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>start_at, order date (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
+<li>end_at, order date (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
+<li>per_page, defaults to system default (<code class="prettyprint">25</code>)</li>
+<li>page, defaults to <code class="prettyprint">1</code></li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a list of existing orders as an array and a meta block.</p>
+
+<ul>
+<li>id (integer), the unique database id of the order</li>
+<li>token (string), a unique token of the order, see more at the documents section</li>
+<li>is_valid (boolean), whether the order is valid or not</li>
+<li>total_price_cents (integer), the total amount of the order in EUR cents</li>
+<li>comment (text), a comment, defined on creation</li>
+<li>reference (text), reference field, can be used for advertising</li>
+<li>rating (integer), a simple amazon style rating value</li>
+<li>invoice (boolean), whether an invoice is available or not</li>
+<li>created_at (date), timestamp on creation</li>
+<li>items (array), list of order items, see order items section</li>
+</ul>
+
+<h2 id="details-of-a-single-order">Details of a single order</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/orders/:id</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/orders/1"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like a single element of the orders array from the order list but with two additional keys:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-31T09:40:11+02:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+
+        </span><span class="nt">"payment_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"billing_address_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">378542</span><span class="p">,</span><span class="w">
+
+        </span><span class="err">...</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<ul>
+<li>payment_status (integer), if using a payment provider, the status is set by the provider. Usualy not in use for resellers.</li>
+<li>billing_address_id (integer), reference to an address dataset. Not in use right now, but in future versions of th API resellers might be able to use several adresses for one account.</li>
+</ul>
+
+<h2 id="documents">Documents</h2>
+
+<p>Each order item has a pdf document containing the relevant information according to the item type. Ticket item pdfs contain the tickets: one per page. Event and tour items have a pdf containing the booking confirmation.</p>
+
+<p>These are available to download if the order <code class="prettyprint">is_valid</code> and if there is a <code class="prettyprint">token</code> present.</p>
+
+<p>Some orders may have an invoice available (indicated by the <code class="prettyprint">invoice</code> attribute in the order).</p>
+
+<p>Due to the token confirmation, authentication via header request is not needed for the document requests.</p>
+
+<h3 id="tickets">Tickets</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/orders/:order_id/tickets/:ticket_id.pdf?token=:token</code></p>
+
+<ul>
+<li>ticket_id means the uniq ticket sale id (order -&gt; order item -&gt; ticket sale)</li>
+</ul>
+
+<h3 id="events">Events</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/orders/:order_id/events/:event_id.pdf?token=:token</code></p>
+
+<ul>
+<li>event_id means the uniq event booking id (order -&gt; order item -&gt; event booking)</li>
+</ul>
+
+<h3 id="tours">Tours</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/orders/:order_id/tours/:tour_id.pdf?token=:token</code></p>
+
+<ul>
+<li>tour_id means the uniq tour booking id (order -&gt; order item -&gt; tour booking)</li>
+</ul>
+
+<h3 id="invoice">Invoice</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/orders/:order_id/invoice.pdf?token=:token</code></p>
+
+<h1 id="order-items">Order Items</h1>
+
+<p>In both list and detailed view the response contains an array of <code class="prettyprint">items</code>. Each item can be one of Ticket, Event or Tour with a slightly different structure.</p>
+
+<p>Each item contains generic attributes like</p>
+
+<ul>
+<li>id (integer), the uniq database id of the order item</li>
+<li>type (string), the type of item, can be one of &ldquo;Ticket&rdquo;, &ldquo;Event&rdquo;, or &ldquo;Tour&rdquo;</li>
+<li>price_cents (integer), price of the item in EUR cents</li>
+<li>vat_pct (float), the item tax rate</li>
+<li>tax_included (boolean), whether the tax (if any) is included in price_cents or not</li>
+</ul>
+
+<p>and the specific attributes block, which is different for every type.</p>
+
+<h2 id="ticket-item">Ticket Item</h2>
+
+<blockquote>
+<p>a single ticket type item in the order items array looks like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">52397</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1400</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tax_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42102</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro mit Gemäldegalerie regulär"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticket_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">247</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemäldegalerie"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutschland"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matthäikirchplatz"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10785"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.5082</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.3673</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"barcodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"orderable"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"barcodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="p">{</span><span class="w">
-                            </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"403000200002-5"</span><span class="p">,</span><span class="w">
-                            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">],</span><span class="w">
-                    </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02T00:00:00+01:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="nt">"after_sale_information"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;G\u00fcltig f\u00fcr einmaligen Eintritt innerhalb von 2 Monaten ab Kaufdatum&lt;/p&gt;"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erwachsener | adult"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.0</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nt">"orderable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TicketSale"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">97633</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4034210297633-5"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ean"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"payment_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
+        </span><span class="nt">"after_sale_information"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<aside class="success">
-Remember — a happy api user is an authenticated api user!
-</aside>
+<h3 id="attributes">Attributes</h3>
 
-<h2 id="barcodes">Barcodes</h2>
+<p>Each ticket type item contains attributes like</p>
+
+<ul>
+<li>id (integer), the uniq database id this ticket sale</li>
+<li>title (string), the title of the parent ticket</li>
+<li>ticket_id (integer), the database parents ticket id</li>
+<li>quantity (integer)</li>
+<li>after_sale_information (text), text containing information for the customer after sale</li>
+</ul>
+
+<p>plus two attribute blocks for the location and the barcodes.</p>
+
+<h3 id="location">Location</h3>
+
+<p>The location is provided as street adress and geo-coordinates. Mind that most museums have no house number.</p>
+
+<h3 id="barcodes">Barcodes</h3>
 
 <p>Each ticket sale will a have one barcode per quantity. Each barcode can be validated and devalued separately.</p>
 
 <p>The barcodes are supposed to be printed on paper. One barcode per sheet.</p>
 
+<h4 id="note-for-tickets-to-attractions-of-the-quot-staatlichen-museen-zu-berlin-quot">Note for tickets to attractions of the &ldquo;Staatlichen Museen zu Berlin&rdquo;:</h4>
+
 <p>The barcodes need to be encoded as <a href="https://en.wikipedia.org/wiki/Code_39">CODE 39</a>, so that they can be scanned.
 Please pay special attention to the required quiet zone and minimal size requirements. You may find an example printout <a href="images/ticket-pdf-example.pdf">here</a>.</p>
+
+<h2 id="event-item">Event Item</h2>
+
+<blockquote>
+<p>a single event type item in the order items array looks like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">52399</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tax_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6127</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22977</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101174</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-09T14:30:00+02:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemäldegalerie"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutschland"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matthäikirchplatz"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10785"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.5082</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.3673</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="attributes">Attributes</h3>
+
+<p>Each event type item contains attributes like</p>
+
+<ul>
+<li>id (integer), the uniq database id of this event date booking</li>
+<li>title (string), the title of the event</li>
+<li>event_id (integer), the database id of the event</li>
+<li>date_id (integer), the database id of the specific date for this event</li>
+<li>start_time (iso8601), the date&rsquo;s timestamp</li>
+<li>quantity (integer), if the event has a simple price configuration, this represents the seat count</li>
+</ul>
+
+<p>plus attribute blocks for the location and quantities, if price configuration is complex (scale prices)</p>
+
+<h3 id="location">Location</h3>
+
+<p>The location is provided as street adress and geo-coordinates. Mind that most museums have no house number.</p>
+
+<h2 id="tour-item">Tour Item</h2>
+
+<blockquote>
+<p>a single tour type item in the order items array looks like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56398</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tour"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tax_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27079</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro | Gruppenführung"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tour_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101173</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-24T12:00:00+02:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"participants"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"age_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erwachsene"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Entgelt"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gruppenpreis"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemäldegalerie"</span><span class="p">,</span><span class="w">
+             </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
+             </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutschland"</span><span class="p">,</span><span class="w">
+             </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matthäikirchplatz"</span><span class="p">,</span><span class="w">
+             </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10785"</span><span class="p">,</span><span class="w">
+             </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.5082</span><span class="p">,</span><span class="w">
+             </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.3673</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="attributes">Attributes</h3>
+
+<p>Each event type item contains attributes like</p>
+
+<ul>
+<li>id (integer), the uniq database id this event booking</li>
+<li>title (string), the title of the event</li>
+<li>tour_id (integer), the database id of the tour</li>
+<li>start_time (iso8601), the timestamp for the tour</li>
+<li>participants (integer)</li>
+<li>language (string)</li>
+<li>age group_(string)</li>
+</ul>
+
+<p>plus attribute blocks for the location and prices</p>
+
+<h3 id="location">Location</h3>
+
+<p>The location is provided as street adress and geo-coordinates. Mind that most museums have no house number.</p>
+
+<h3 id="prices">Prices</h3>
+
+<p>The price of a tour booking depends on several pricing factors like surcharges and other fees. The <code class="prettyprint">prices</code> array holds all single price items which are summed up to the order items <code class="prettyprint">price_cents</code> total.</p>
+
+<h1 id="creating-an-order">Creating an Order</h1>
+
+<p>An order is created by a POST request to the orders endpoint:</p>
+
+<p><code class="prettyprint">POST https://demo.gomus.de/api/v4/orders</code></p>
+
+<p>There can be only one order per request. One order can contain several items (tickets, tour bookings and event bookings)</p>
+
+<p>A final validation check will be made on the server. Either all order items are bought or none.
+In case of errors you will get error messages back as a response.</p>
+
+<blockquote>
+<p>Write definition of order into /tmp/order.json before executing shell command.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/orders"</span>
+    -XPOST --data <span class="s2">"@/tmp/order.json"</span>
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command assumes the order.json JSON is structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please send fast!"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bought you by the awesome tourist gmbh!"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1400</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="required-attributes">Required attributes</h3>
+
+<ul>
+<li>comment (text), your comment, not readable on confirmation documents</li>
+<li>reference (text), your reference, readable on confirmation documents</li>
+<li>items (array), list of item configurations</li>
+<li>total (integer), the sum of all item prices. This ensures that the server and the client calculate the same price.</li>
+</ul>
+
+<h2 id="items">Items</h2>
+
+<p>A valid order needs at least one valid item. One item can either be a ticket sale, an event booking or a tour booking.</p>
+
+<p>An item has two major attributes:</p>
+
+<ul>
+<li>type (text), one of &ldquo;Ticket&rdquo;, &ldquo;Event&rdquo;, or &ldquo;Tour&rdquo;</li>
+<li>attributes (hash), a set of attributes specific to the item type</li>
+</ul>
+
+<h3 id="ticket">Ticket</h3>
+
+<blockquote>
+<p>a single item holding a ticket sale is structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">247</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-07T13:00:00+02:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>A ticket item has a fairly simple structure:</p>
+
+<ul>
+<li>id (integer), the tickets id, see ticket section in public api</li>
+<li>quantity (integer), a count &gt; 0</li>
+<li>time (iso8601), the entry timestamp</li>
+</ul>
+
+<h3 id="event">Event</h3>
+
+<blockquote>
+<p>a single item holding an event booking is structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28227</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>or with several price options:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28227</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"4"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>An event item has a similar structure:</p>
+
+<ul>
+<li>id (integer), the events date id, see event section in public api</li>
+</ul>
+
+<p>If the event only has one price, the quantity key is used.</p>
+
+<ul>
+<li>quantity (integer), a count &gt; 0</li>
+</ul>
+
+<p>However, if the event has scale pricing, then the quantities key is used instead:</p>
+
+<ul>
+<li>quantities (object), the scale price id as the key, and the quantity as the value.</li>
+</ul>
+
+<h3 id="tour">Tour</h3>
+
+<blockquote>
+<p>a single item holding a tour booking is structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tour"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28227</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-07T13:00:00+02:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"age_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"surcharges"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"4"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>or with several price options:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tour"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28227</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-07T13:00:00+02:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"language_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"age_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"4"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"surcharges"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"4"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>A tour item extends the structure of events:</p>
+
+<ul>
+<li>id (integer), the tour id, see tour section in public api</li>
+<li>surcharges (object), the surcharge id as the key, and the quantity as the value</li>
+<li>start_time (iso8601), the entry timestamp</li>
+<li>language_id (reference)</li>
+<li>age_group_id (reference)</li>
+</ul>
+
+<p>If the tour only has one price, the quantity key is used.</p>
+
+<ul>
+<li>quantity (integer), a count &gt; 0</li>
+</ul>
+
+<p>However, if the tour has scale pricing, then the quantities key is used instead:</p>
+
+<ul>
+<li>quantities (object), the scale price id as the key, and the quantity as the value</li>
+</ul>
+
+<p>Surcharge configuration must be provided if tour is configured with surcharges (see tour section in the public api). The surcharge configuration is validated on server side.</p>
 
           <h1 id="errors">Errors</h1>
 
@@ -405,7 +716,6 @@ Please pay special attention to the required quiet zone and minimal size require
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
     </div>
