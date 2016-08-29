@@ -133,6 +133,15 @@ In a success case a JSON with the valid order will be returned.</p>
 
 <p>All orders placed by a cash point are assumed to be payed in place.</p>
 
+<h2 id="additional-filters">Additional filters</h2>
+
+<p>The order endpoint for cash point users might configured with global access to all orders placed. To filter
+for the orders placed by the cash point, the filter <code class="prettyprint">only_my_orders</code> is provided:</p>
+
+<ul>
+<li>only_my_orders (boolean, true|false, default: all)</li>
+</ul>
+
 <p>See <a href="reseller_api.html">detailed documentation on Reseller API</a> for information on how to create an order 
 for events, tours and tickets against the orders end point.</p>
 
