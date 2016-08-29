@@ -185,6 +185,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <ul>
 <li>added by_bookable filter for events, tickets and tours</li>
 <li>added cash point api documentation</li>
+<li>added public version info endpoint (api/v4/version)</li>
 </ul>
 
 <h3 id="4-0">4.0</h3>
@@ -198,6 +199,23 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>the go~mus API version is <em>4.1-rc-1</em></p>
 
 <p>Note: the current API version is a release candidate, features and specs might change until final release.</p>
+
+<p>The system and api version is available at each instance:</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/version</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/version"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.7.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"api"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.1-rc-1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
       </div>
       <div class="dark-box">
