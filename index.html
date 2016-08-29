@@ -88,10 +88,10 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all_nosearch.js"></script>
+      <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="main" data-languages="[]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -102,6 +102,10 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
         </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <div id="toc">
       </div>
         <ul class="toc-footer">
@@ -112,7 +116,23 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <p>See <a href="current/index.html">current v.4.0.0 API documentation</a>.</p>
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the go~mus API documentation! You can use our API to access go~mus API endpoints, which can get information on various entities in our database.</p>
+
+<p>We have examples using curl! You can view code examples in the dark area to the right.</p>
+
+<h1 id="public-api">Public API</h1>
+
+<p>The Public API provides public accessible information about museums, exhibitions, tours, events and tickets.</p>
+
+<p>See <a href="public_api.html">detailed documentation on Public API</a>.</p>
+
+<h1 id="reseller-api">Reseller API</h1>
+
+<p>The Reseller API allows you to directly sell products (events, tours and tickets) to customers using the go~mus API.</p>
+
+<p>See <a href="reseller_api.html">detailed documentation on Reseller API</a>.</p>
 
       </div>
       <div class="dark-box">
