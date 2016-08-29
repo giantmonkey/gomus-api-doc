@@ -322,8 +322,6 @@ to change the default prices but e.g. give a discount and add additional custom 
 <h3 id="adding-prices">Adding prices</h3>
 
 <p><code class="prettyprint">POST https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices</code></p>
-<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/bookings/1/prices"</span>
-</code></pre>
 
 <blockquote>
 <p>Write definition of order into /tmp/prices.json before executing shell command.</p>
@@ -355,15 +353,13 @@ to change the default prices but e.g. give a discount and add additional custom 
  </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The response will an http ok or an error.</p>
+<p>The response will contain a http ok or an error.</p>
 
 <h3 id="updating-prices">Updating prices</h3>
 
 <p>Custom prices can be updated like this:</p>
 
 <p><code class="prettyprint">PUT https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices/:id</code></p>
-<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"</span>
-</code></pre>
 
 <blockquote>
 <p>Write definition of order into /tmp/price_update.json before executing shell command.</p>
@@ -389,6 +385,19 @@ to change the default prices but e.g. give a discount and add additional custom 
 </span></code></pre>
 
 <p>The response will contain the updated price object or an error.</p>
+
+<h3 id="deleting-prices">Deleting prices</h3>
+
+<p>A custom price can be updated like this:</p>
+
+<p><code class="prettyprint">DELETE https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices/:id</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"</span>
+    -XDELETE
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<p>The response will contain a http ok or an error.</p>
 
           <h1 id="errors">Errors</h1>
 
