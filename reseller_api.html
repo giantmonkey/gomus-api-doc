@@ -126,28 +126,6 @@ Remember — a happy api user is an authenticated api user!
 
 <p>See <a href="public_api.html">detailed documentation on Public API</a> for information on how to request the basic data for events, tours and tickets.</p>
 
-<h1 id="authentication">Authentication</h1>
-
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>go~mus expects the API key to be included in all reseller API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: Bearer meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
 <h1 id="orders">Orders</h1>
 
 <p>An order is the final result of a checkout process, e.g. like in normal online shops. Every ticket sale or event booking is wrapped into items in a cart and sent to the server for validation.</p>
@@ -672,6 +650,8 @@ In case of errors you will get error messages back as a response.</p>
 </ul>
 
 <p>Surcharge configuration must be provided if tour is configured with surcharges (see tour section in the public api). The surcharge configuration is validated on server side.</p>
+
+<p>Note: the quantity or sum of quantities represents the number of participants (people in group)</p>
 
           <h1 id="errors">Errors</h1>
 

@@ -412,6 +412,7 @@
 <li>locales are available with the <code class="prettyprint">locale</code> parameter, see more in the locale section</li>
 <li>by_museum_ids (Array of museum ids), filter by museums, see museums section</li>
 <li>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</li>
+<li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
 </ul>
 
 <h3 id="available-parameters">Available parameters:</h3>
@@ -494,7 +495,7 @@
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a ticket block with information for that  The information is the same as that of the tickets list response, but with the addition of a couple of keys.</p>
+<p>The json response contains a ticket block with information for that the information is the same as that of the tickets list response, but with the addition of a couple of keys.</p>
 
 <ul>
 <li>after_sale_information (string), information to be shown after the sale of a ticket. Can contain html elements.</li>
@@ -530,7 +531,9 @@
 
 </span></code></pre>
 
-<p>Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016, the maximum bookable quantity is 15. If only one available time slot is returned, as is the case for day tickets, the time range is up untill the end of the day.</p>
+<p>Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016, 
+the maximum bookable quantity is 15. If only one available time slot is returned, as is the case for day 
+tickets, the time range is up untill the end of the day. </p>
 
 <h3 id="available-parameters">Available parameters:</h3>
 
@@ -623,7 +626,8 @@
 
 <h2 id="capacities-for-a-set-of-tickets">Capacities for a set of tickets</h2>
 
-<p>A ticket has one or more capacities. Each capacity is the maximum bookable quantity of the ticket for a specific range of time.</p>
+<p>A ticket has one or more capacities. Each capacity is the maximum bookable quantity of the ticket for a specific 
+range of time.</p>
 
 <p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tickets/capacities</code></p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tickets/capacities"</span>
@@ -661,11 +665,20 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Tickets are assigned to (one or multiple) quotas and reduce each others capacity when ordered. As a result, capacity calculation becomes a little more complicated.</p>
+<p>Tickets are assigned to (one or multiple) quotas and reduce each others capacity when ordered. As a result, 
+capacity calculation becomes a little more complicated.</p>
 
-<p>For a single ticket the capacities are calculated for you, see the capacities of a ticket section above. For multiple tickets however, to avoid requesting new capacities for each quantity update, we provide the quota ids so that the new ticket capacities can be calculated in the browser.</p>
+<p>For a single ticket the capacities are calculated for you, see the capacities of a ticket section above. 
+For multiple tickets however, to avoid requesting new capacities for each quantity update, we provide the 
+quota ids so that the new ticket capacities can be calculated in the browser.</p>
 
-<p>For example, if two tickets reside in the same quota which has a capacity of 10 for a specific time, if 2 of one ticket is selected only 8 are available for the other.</p>
+<p>For example, if two tickets reside in the same quota which has a capacity of 10 for a specific time, 
+if 2 of one ticket is selected only 8 are available for the other.</p>
+
+<p>Note that for a set of tickets with each different entry durations the greatest common divisor of all entry
+durations is used as step size for the capacity time slots. If this is the case, you need to ensure you set
+the time for the ticket to a valid value (first_entry + n * entry_duration). For day tickets you need to set
+first_entry as time of booking. </p>
 
 <h3 id="distinguishing-unavailable-and-sold-out-tickets">Distinguishing unavailable and sold out tickets.</h3>
 
@@ -804,6 +817,7 @@
 <li>by_museum_ids (Array of museum ids), filter by museums, see museums section</li>
 <li>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</li>
 <li>by_categories (Array of category names), filter by categories, see categories section</li>
+<li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
 </ul>
 
 <h3 id="available-parameters">Available parameters:</h3>
@@ -1214,10 +1228,11 @@
 <ul>
 <li>a simple search is available with the <code class="prettyprint">q</code> parameter, e.g. <code class="prettyprint">?q=Modern</code>, see more in the search section</li>
 <li>locales are available with the <code class="prettyprint">locale</code> parameter, see more in the locale section</li>
-<li>by_featured (Boolean, true|false), filter by featured flag</li>
+<li>by_featured (Boolean, true|false, default: all), filter by featured flag</li>
 <li>by_museum_ids (Array of museum ids), filter by museums, see museums section</li>
 <li>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</li>
 <li>by_categories (Array of category names), filter by categories, see categories section</li>
+<li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
 </ul>
 
 <h3 id="available-parameters">Available parameters:</h3>

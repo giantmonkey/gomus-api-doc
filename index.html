@@ -118,21 +118,86 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the go~mus API documentation! You can use our API to access go~mus API endpoints, which can get information on various entities in our database.</p>
+<p>Welcome to the go~mus API documentation! You can use our API to access go~mus API endpoints, which can get 
+information on various entities in our database.</p>
 
 <p>We have examples using curl! You can view code examples in the dark area to the right.</p>
 
-<h1 id="public-api">Public API</h1>
+          <h1 id="authentication">Authentication</h1>
+
+<p>The public API is accessible without authentication and authorization. </p>
+
+<p>But before you can use the go~mus reseller API or the go~mus cash point API you will have to register a user 
+account with an API key. Please talk to your contact person in order to get access.</p>
+
+<p>Note that special prices and products might only be available for authenticated users. It is recommended to 
+authenticate against all endpoints.</p>
+
+<aside class="success">
+Remember — a happy api user is an authenticated api user!
+</aside>
+
+<h2 id="token-authentication">Token Authentication</h2>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+</blockquote>
+
+<p>go~mus expects the API key to be included in all reseller API requests to the server in a header 
+that looks like the following:</p>
+
+<p><code class="prettyprint">Authorization: Bearer meowmeowmeow</code></p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
+
+          <h1 id="public-api">Public API</h1>
 
 <p>The Public API provides public accessible information about museums, exhibitions, tours, events and tickets.</p>
 
 <p>See <a href="public_api.html">detailed documentation on Public API</a>.</p>
 
-<h1 id="reseller-api">Reseller API</h1>
+          <h1 id="reseller-api">Reseller API</h1>
 
 <p>The Reseller API allows you to directly sell products (events, tours and tickets) to customers using the go~mus API.</p>
 
 <p>See <a href="reseller_api.html">detailed documentation on Reseller API</a>.</p>
+
+          <h1 id="cash-point-api">Cash Point API</h1>
+
+<p>The Cash Point API allows cash points to directly sell products (events, tours and tickets) to customers using the go~mus API.</p>
+
+<p>See <a href="cash_point_api.html">detailed documentation on Cash Point API</a>.</p>
+
+          <h1 id="changelog">Changelog</h1>
+
+<h3 id="4-1-rc-1">4.1-rc-1</h3>
+
+<ul>
+<li>added by_bookable filter for events, tickets and tours</li>
+<li>added cash point api documentation</li>
+</ul>
+
+<h3 id="4-0">4.0</h3>
+
+<ul>
+<li>initial API version 4</li>
+</ul>
+
+          <h2 id="version">Version</h2>
+
+<p>the go~mus API version is <em>4.1-rc-1</em></p>
+
+<p>Note: the current API version is a release candidate, features and specs might change until final release.</p>
 
       </div>
       <div class="dark-box">
