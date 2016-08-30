@@ -399,6 +399,69 @@ to change the default prices but e.g. give a discount and add additional custom 
 
 <p>The response will contain a http ok or an error.</p>
 
+<h2 id="giving-feedback">Giving feedback</h2>
+
+<p>The cash point is able to set a feedback for a tour booking, e.g. if it took place, how many participants took part
+and a generic comment.</p>
+
+<h3 id="setting-feedback">Setting feedback</h3>
+
+<p><code class="prettyprint">PUT https://demo.gomus.de/api/v4/tours/bookings/:id/feedback</code></p>
+
+<blockquote>
+<p>Write definition of order into /tmp/feedback.json before executing shell command.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/bookings/1/feedback"</span>
+    -XPUT --data <span class="s2">"@/tmp/feedback.json"</span>
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command assumes the prices.json JSON is structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eine tolle Führung, der Kunde war sehr zufrieden!"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"participants"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"took_place"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The response will contain the feedback or an error.</p>
+
+<h3 id="getting-feedback">Getting feedback</h3>
+
+<p>Custom prices can be updated like this:</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/bookings/:id/feedback</code></p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"took_place"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eine tolle Führung, der Kunde war sehr zufrieden!"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"participants"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-30T09:35:17+02:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The response will contain the current feedback.</p>
+
+<h3 id="clearing-feedback">Clearing feedback</h3>
+
+<p>The feedback can be cleared like this:</p>
+
+<p><code class="prettyprint">DELETE https://demo.gomus.de/api/v4/tours/bookings/:id/feedback</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/bookings/:id/feedback"</span>
+    -XDELETE
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<p>The response will contain a http ok or an error.</p>
+
           <h1 id="errors">Errors</h1>
 
 <p>The go~mus API uses the following error codes:</p>
