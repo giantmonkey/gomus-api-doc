@@ -284,6 +284,7 @@ for events, tours and tickets against the orders end point.</p>
                 </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fee"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-28T13:04:17+02:00"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
@@ -294,6 +295,7 @@ for events, tours and tickets against the orders end point.</p>
                 </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-28T13:04:17+02:00"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
@@ -317,9 +319,11 @@ for events, tours and tickets against the orders end point.</p>
 <p>It is possible to add and update custom booking prices unless the booking has been payed already. It is not possible 
 to change the default prices but e.g. give a discount and add additional custom items.</p>
 
-<p>Note that the cash point has only access to customer booking prices.</p>
+<p>Note that the cash point has only access to customer booking prices and can change only custom type prices.</p>
 
 <h3 id="adding-prices">Adding prices</h3>
+
+<p>Custom customer prices can be added like this:</p>
 
 <p><code class="prettyprint">POST https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices</code></p>
 
