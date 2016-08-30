@@ -147,11 +147,104 @@ for events, tours and tickets against the orders end point.</p>
 
 <h1 id="bookings">Bookings</h1>
 
-<p>The cash point is able to access the global booking lists to e.g. display a by day list on the screen.</p>
+<p>The cash point is able to access the global booking lists to e.g. display a by day list or the booking
+list for events.</p>
+
+<h2 id="event-bookings">Event bookings</h2>
+
+<p>The bookings for event dates can be accessed via the date bookings endpoint:</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/events/:event_id/dates/:date_id/bookings</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/123/dates/456/bookings"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1221</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="err">...</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"institution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="err">...</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-18T20:51:19+02:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preis"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1222</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hinweis für die Kasse"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"institution"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-30T13:07:31+02:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"regulär"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ermäßigt"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1223</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stornierung mit voller Gebühr"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="err">...</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"institution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="err">...</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-21T19:53:00+02:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-30T13:21:58+02:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Storno-Preis"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"total_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The result contains an array of bookings and a meta object.</p>
 
 <h2 id="tour-bookings">Tour bookings</h2>
 
-<p>The cash point can access all individual tour bookings via the bookings endpoint.</p>
+<p>The cash point can access all individual tour bookings via the tours bookings endpoint.</p>
 
 <h3 id="list-of-tour-bookings">List of tour bookings</h3>
 
