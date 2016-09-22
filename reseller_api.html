@@ -226,6 +226,21 @@ In a success case a JSON with the valid order will be returned.</p>
 <li>billing_address_id (integer), reference to an address dataset. Not in use right now, but in future versions of th API resellers might be able to use several adresses for one account.</li>
 </ul>
 
+<h2 id="find-single-order-by-barcode">Find single order by barcode</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/orders/barcode/:barcode</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/orders/barcode/704323341"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured just like the details of a single order.</p>
+</blockquote>
+
+<h3 id="barcodes">Barcodes</h3>
+
+<p>The barcode may belong to any item that is contained in the order.</p>
+
 <h2 id="documents">Documents</h2>
 
 <p>Each order item has a pdf document containing the relevant information according to the item type. Ticket item pdfs contain the tickets: one per page. Event and tour items have a pdf containing the booking confirmation.</p>
