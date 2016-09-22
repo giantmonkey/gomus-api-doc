@@ -311,6 +311,8 @@ In a success case a JSON with the valid order will be returned.</p>
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro mit Gemäldegalerie regulär"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"ticket_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">247</span><span class="p">,</span><span class="w">
         </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticket_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"time_slot"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-14T15:00:00+02:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemäldegalerie"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
@@ -337,10 +339,12 @@ In a success case a JSON with the valid order will be returned.</p>
 <p>Each ticket type item contains attributes like</p>
 
 <ul>
-<li>id (integer), the uniq database id this ticket sale</li>
+<li>id (integer), the uniq database id of this ticket sale</li>
 <li>title (string), the title of the parent ticket</li>
 <li>ticket_id (integer), the database parents ticket id</li>
 <li>quantity (integer)</li>
+<li>ticket_type (string), the type of ticket</li>
+<li>start_time (iso8601), the start time of the ticket</li>
 <li>after_sale_information (text), text containing information for the customer after sale</li>
 </ul>
 
