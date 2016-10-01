@@ -821,22 +821,182 @@ reservation time.</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"Vorträge / Seminare / Tagungen"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"öffentliche Führung"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Sonderveranstaltung"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Führung / Exkursion"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Bühne / Musik / Film"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Fortbildung"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Workshops / Kurse"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Künstlergespräche / Performances / Podiumsdiskussionen"</span><span class="w">
+  </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kurs / Workshop"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinder / Familien"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a list of all event categories to build up filters. 
+Note: this only contains valid elements, some events might have no name set. Some categories have
+duplicate names.</p>
+
+<h2 id="event-languages">Event languages</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/events/languages</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/languages"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Englisch"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all event categories to build up filters. Note: this only contains valid elements, some events might have no filtername set.</p>
+<p>The json response contains a list of all languages used by online bookable event products to build up filters. </p>
+
+<h2 id="event-tags">Event tags</h2>
+
+<p>Events can be tagged with the following tag types:</p>
+
+<h3 id="age-groups">Age groups</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/events/age_groups</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/age_groups"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"age_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinder bis 10 Jahre"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinder ab 10 Jahre"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="audiences">Audiences</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/events/audiences</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/audiences"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"audiences"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jugendliche"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erwachsene"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="catch-words">Catch words</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/events/catch_words</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/catch_words"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"catch_words"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ägypten"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mythologie"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="proposal-categories">Proposal categories</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/events/proposal_categories</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/proposal_categories"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"proposal_categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Schulklasse"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gruppe ohne Guide"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="grades">Grades</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/events/grades</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/grades"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"grades"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grundschule Klasse 1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grundschule Klasse 2"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sekundarstufe II"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="tag-responses">Tag responses</h3>
+
+<p>The json response contains a list of used event tags by category to build up filters.</p>
 
 <h2 id="list-of-events">List of events</h2>
 
@@ -857,8 +1017,8 @@ reservation time.</p>
             </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60 Minuten | 4 EUR zzg. Eintritt&lt;br&gt;Di – Fr / 16:00 Uhr, Sa und So / 14:30 und 16:00 Uhr&lt;br&gt;"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"filtername"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -878,7 +1038,18 @@ reservation time.</p>
                 </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.5082</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.3673</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"audiences"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="nt">"age_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"audiences"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"catch_words"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"disablements"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"grades"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"proposal_categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -898,7 +1069,15 @@ reservation time.</p>
 <li>by_featured (Boolean, true|false), filter by featured flag</li>
 <li>by_museum_ids (Array of museum ids), filter by museums, see museums section</li>
 <li>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</li>
-<li>by_categories (Array of category names), filter by categories, see categories section</li>
+<li>by_category_ids (Array of category ids), filter by category, see categories section</li>
+<li>by_age_group_ids (Array of category ids), filter by category, see age group section</li>
+<li>by_audience_ids (Array of category ids), filter by category, see audience section</li>
+<li>by_catch_word_ids (Array of category ids), filter by category, see catch words section</li>
+<li>by_disablement_ids (Array of category ids), filter by category, see disablements section</li>
+<li>by_grade_ids (Array of category ids), filter by category, see grades section</li>
+<li>by_proposal_category_ids (Array of category ids), filter by proposal category, see categories section</li>
+<li>by_categories (Array of category names), filter by category names, see categories section</li>
+<li>by_language_ids (Array of language ids), filter by language, see languages section</li>
 <li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
 </ul>
 
@@ -984,6 +1163,12 @@ reservation time.</p>
 
 <p>The calender for a single event provides a fast way to check when the event has dates or not. With the default mode, returns a simple boolean as the value for each day in the range specified. With depth <code class="prettyprint">all</code> we get the details of the dates available for each day as well. However, this calculation will take longer.</p>
 
+<h3 id="available-filters">Available filters:</h3>
+
+<ul>
+<li>by_language_ids (Array of language ids), filter by language, see languages section</li>
+</ul>
+
 <h3 id="available-parameters">Available parameters:</h3>
 
 <ul>
@@ -1010,14 +1195,17 @@ reservation time.</p>
             </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101174</span><span class="p">,</span><span class="w">
             </span><span class="nt">"exhibition_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2057</span><span class="p">,</span><span class="w">
             </span><span class="nt">"museum_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-10T14:30:00+02:00"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"booked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+            </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -1053,19 +1241,7 @@ reservation time.</p>
 <li>title (string), the name of the date</li>
 <li>sub_title (string), the sub title of the date</li>
 <li>start_time (iso8601), the date&rsquo;s timestamp</li>
-</ul>
-
-<p>plus a block of attributes for available seats (see below).</p>
-
-<h3 id="seats">Seats</h3>
-
-<p>The seats block contains four attributes:</p>
-
-<ul>
-<li>min (integer), minimum number of seats to book</li>
-<li>max (integer), maximum number of seats to book</li>
-<li>booked (integer), number of seats already booked</li>
-<li>available (integer), number of seats still available to book</li>
+<li>language, with id and name</li>
 </ul>
 
 <h2 id="details-for-a-single-date">Details for a single date</h2>
@@ -1083,6 +1259,10 @@ reservation time.</p>
         </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101174</span><span class="p">,</span><span class="w">
         </span><span class="nt">"exhibition_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2057</span><span class="p">,</span><span class="w">
         </span><span class="nt">"museum_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1104,12 +1284,10 @@ reservation time.</p>
             </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.5082</span><span class="p">,</span><span class="w">
             </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.3673</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="nt">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -1134,9 +1312,20 @@ reservation time.</p>
 
 <p>plus a block of attributes for available seats (see below) languages, location and prices.</p>
 
-<h3 id="languages">Languages</h3>
+<h3 id="seats">Seats</h3>
 
-<p>Usualy this block contains an array with one element, since most of events are in one language.</p>
+<p>The seats block contains four attributes:</p>
+
+<ul>
+<li>min (integer), minimum number of seats to book</li>
+<li>max (integer), maximum number of seats to book</li>
+<li>booked (integer), number of seats already booked</li>
+<li>available (integer), number of seats still available to book</li>
+</ul>
+
+<h3 id="location">Location</h3>
+
+<p>The location block provides information about the event starting/meeting point and address.</p>
 
 <h3 id="prices">Prices</h3>
 
@@ -1181,6 +1370,14 @@ reservation time.</p>
 <li><p>by_museum_ids (Array of museum ids), filter by museums, see museums section</p></li>
 <li><p>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</p></li>
 <li><p>by_event_ids (Array of event ids), filter by events</p></li>
+<li><p>by_category_ids (Array of category ids), filter by category, see categories section</p></li>
+<li><p>by_age_group_ids (Array of age group ids), filter by age group, see age group section</p></li>
+<li><p>by_audience_ids (Array of audience ids), filter by audience, see audience section</p></li>
+<li><p>by_catch_word_ids (Array of catch word ids), filter by catch word, see catch words section</p></li>
+<li><p>by_disablement_ids (Array of disablement ids), filter by disablement, see disablements section</p></li>
+<li><p>by_grade_ids (Array of grade ids), filter by grade, see grades section</p></li>
+<li><p>by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section</p></li>
+<li><p>by_language_ids (Array of language ids), filter by language, see languages section</p></li>
 <li><p>by_categories (Array of category names), filter by categories, see categories section</p></li>
 </ul>
 
@@ -1196,6 +1393,35 @@ reservation time.</p>
 <h3 id="response">Response</h3>
 
 <p>The json response contains a list of dates for all events as an array and a meta block.</p>
+
+<h2 id="date-languages">Date languages</h2>
+
+<p>The available languages for dates within the selection (same filters as in global dates list apply here)</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/dates/languages</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/dates/languages"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Englisch"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a list of all languages used by online bookable date to build up filters. </p>
 
 <h2 id="global-events-calendar">Global events calendar</h2>
 
@@ -1215,6 +1441,14 @@ reservation time.</p>
 <li>by_museum_ids (Array of museum ids), filter by museums, see museums section</li>
 <li>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</li>
 <li>by_event_ids (Array of event ids), filter by events</li>
+<li>by_category_ids (Array of category ids), filter by category, see categories section</li>
+<li>by_age_group_ids (Array of age group ids), filter by age group, see age group section</li>
+<li>by_audience_ids (Array of audience ids), filter by audience, see audience section</li>
+<li>by_catch_word_ids (Array of catch word ids), filter by catch word, see catch words section</li>
+<li>by_disablement_ids (Array of disablement ids), filter by disablement, see disablements section</li>
+<li>by_grade_ids (Array of grade ids), filter by grade, see grades section</li>
+<li>by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section</li>
+<li>by_language_ids (Array of language ids), filter by language, see languages section</li>
 <li>by_categories (Array of category names), filter by categories, see categories section</li>
 </ul>
 
@@ -1243,15 +1477,177 @@ reservation time.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"Projekt"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Führung"</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Projekt"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Führung"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all tour categories to build up filters. Note: this only contains valid elements, some tours might have no filtername set.</p>
+<p>The json response contains a list of all tour categories to build up filters. 
+Note: this only contains valid elements, some events might have no name set. Some categories have
+duplicate names.</p>
+
+<h2 id="tour-languages">Tour languages</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/languages</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/languages"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Englisch"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a list of all languages used by online bookable tour products to build up filters. </p>
+
+<h2 id="tour-tags">Tour tags</h2>
+
+<p>Tours can be tagged with the following tag types:</p>
+
+<h3 id="age-groups">Age groups</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/age_groups</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/age_groups"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"age_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinder bis 10 Jahre"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinder ab 10 Jahre"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="audiences">Audiences</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/audiences</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/audiences"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"audiences"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jugendliche"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erwachsene"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="catch-words">Catch words</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/catch_words</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/catch_words"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"catch_words"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ägypten"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mythologie"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="proposal-categories">Proposal categories</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/proposal_categories</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/proposal_categories"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"proposal_categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Schulklasse"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gruppe ohne Guide"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="grades">Grades</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/grades</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/grades"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"grades"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grundschule Klasse 1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grundschule Klasse 2"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sekundarstufe II"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="tag-responses">Tag responses</h3>
+
+<p>The json response contains a list of used tour tags by category to build up filters.</p>
 
 <h2 id="list-of-tours">List of tours</h2>
 
@@ -1272,8 +1668,8 @@ reservation time.</p>
             </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60 Minuten | 90 EUR zzgl. Eintritt &lt;br&gt;Buchung 14 Tage im Voraus&lt;br&gt;(Gruppen bis 25 Personen)"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Führung (60 min)"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"filtername"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Führung"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1293,7 +1689,18 @@ reservation time.</p>
                 </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.5082</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.3673</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"audiences"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="nt">"age_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"audiences"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"catch_words"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"disablements"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"grades"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"proposal_categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1313,6 +1720,14 @@ reservation time.</p>
 <li>by_featured (Boolean, true|false, default: all), filter by featured flag</li>
 <li>by_museum_ids (Array of museum ids), filter by museums, see museums section</li>
 <li>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</li>
+<li>by_category_ids (Array of category ids), filter by category, see categories section</li>
+<li>by_age_group_ids (Array of age group ids), filter by age group, see age group section</li>
+<li>by_audience_ids (Array of audience ids), filter by audience, see audience section</li>
+<li>by_catch_word_ids (Array of catch word ids), filter by catch word, see catch words section</li>
+<li>by_disablement_ids (Array of disablement ids), filter by disablement, see disablements section</li>
+<li>by_grade_ids (Array of grade ids), filter by grade, see grades section</li>
+<li>by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section</li>
+<li>by_language_ids (Array of language ids), filter by language, see languages section</li>
 <li>by_categories (Array of category names), filter by categories, see categories section</li>
 <li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
 </ul>
@@ -1343,7 +1758,8 @@ reservation time.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/1"</span>
 </code></pre>
 
-<p>The information is the same as that of the tours list response, but with the addition of the description key.</p>
+<p>The information is the same as that of the tours list response, but with the addition of the description 
+key and some other attributes.</p>
 
 <h2 id="prices-for-a-tour">Prices for a tour</h2>
 
