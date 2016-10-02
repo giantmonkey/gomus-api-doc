@@ -1998,6 +1998,45 @@ key and some other attributes.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h2 id="multi-locale-support">Multi-Locale support</h2>
+
+<p>go~mus supports multiple locales for authenticated requests. Using the <code class="prettyprint">locale</code> parameter as an array will return
+every translatable attribute as a hash with the requested locales as keys and the translations as values.</p>
+
+<p>Note that only available locales (see above) are valid for multi locale requests.</p>
+
+<h3 id="mulit-locale-example">Mulit-Locale example</h3>
+
+<p>The following example will require the ticket details in german and english at once.</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/ticket/1?locale[]=de&amp;locale[]=en</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/ticket/1?locale[]=de&amp;locale[]=en</span><span class="sb">`</span>
+</code></pre>
+
+<blockquote>
+<p>The above example command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"regular ticket"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket regulär"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"for visitors"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"für Besucher"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beschreibung"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+
+        </span><span class="err">...</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">   
+</span></code></pre>
+
           <h1 id="errors">Errors</h1>
 
 <p>The go~mus API uses the following error codes:</p>
