@@ -234,6 +234,33 @@
 <li>location, contains information about the location of the museum.</li>
 </ul>
 
+<h2 id="opening-hours-of-a-single-museum">Opening hours of a single museum</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/museums/:id/opening_hours</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/museums/1/opening_hours?date=2016-12-31"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"opening_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-31T10:00:00+01:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-31T18:30:00+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>date, defaults to today</li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains the begin and end of the opening hours as datetimes.</p>
+
           <h1 id="exhibitions">Exhibitions</h1>
 
 <p>Provides information about the online bookable exhibitions</p>
