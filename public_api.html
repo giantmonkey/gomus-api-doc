@@ -805,7 +805,7 @@ reservation time.</p>
 
 <h3 id="updating-and-refreshing-a-reservation">Updating and refreshing a reservation</h3>
 
-<p>A ticket eservation can be updated and refreshed like this:</p>
+<p>A ticket reservation can be updated and refreshed like this:</p>
 
 <p><code class="prettyprint">PUT https://demo.gomus.de/api/v4/tickets/reservations/:token</code></p>
 
@@ -826,13 +826,30 @@ reservation time.</p>
     </span><span class="nt">"reservation"</span><span class="p">:</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-       </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
  </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>The response will contain the reservation object or an error.</p>
 
 <p>Note: you can only update the quantity, the validity will automaticaly refresh on each update.</p>
+
+<h3 id="deleting-a-reservation">Deleting a reservation</h3>
+
+<p>A ticket reservation can be deleted. It is advised that you do so if the reservation is no longer needed.</p>
+
+<p><code class="prettyprint">DELETE https://demo.gomus.de/api/v4/tickets/reservations/:token</code></p>
+
+<blockquote>
+<p>Write definition of order into /tmp/reservation_update.json before executing shell command.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tickets/reservations/:token"</span>
+    -XDELETE
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<p>The response will have no content.</p>
 
           <h1 id="events">Events</h1>
 
