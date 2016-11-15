@@ -213,6 +213,9 @@
             </span><span class="nt">"article"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../article/hintergrund_grau.jpg"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../detail/hintergrund_grau.jpg"</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alte Nationalgalerie"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
@@ -232,7 +235,18 @@
 
 <ul>
 <li>location, contains information about the location of the museum.</li>
+<li>content, contains key/value pairs of custom defined attributes, e.g. the following:</li>
 </ul>
+<pre class="highlight json"><code><span class="s2">"content"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"cms_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cms_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Das Museum!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"shop_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"shop_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Das Museum lädt ein."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"picture_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"picture_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"picture_copyright_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h2 id="opening-hours-of-a-single-museum">Opening hours of a single museum</h2>
 
@@ -277,21 +291,27 @@
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"exhibitions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"museum_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dauerausstellung | Gemäldegalerie"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Malerei vom 13. bis zum 18. Jahrhundert "</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"slider_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Malerei vom 13. bis zum 18. Jahrhundert"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"copyright_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"teaser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../preview/hintergrund_grau.jpg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"article"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../article/hintergrund_grau.jpg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../detail/hintergrund_grau.jpg"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"museum_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dauerausstellung | Gemäldegalerie"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Malerei vom 13. bis zum 18. Jahrhundert "</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slider_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Malerei vom 13. bis zum 18. Jahrhundert"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"copyright_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"teaser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../preview/hintergrund_grau.jpg"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"article"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../article/hintergrund_grau.jpg"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../detail/hintergrund_grau.jpg"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"time_frames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-28T09:00:00+01:00"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-04T20:45:00+01:00"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="err">...</span><span class="w">
@@ -334,6 +354,7 @@
 <li>picture, contains picture information and urls for various image formats</li>
 <li>slider_description, additional description field used by the online shop slider</li>
 <li>featured, boolean flag of whether the exhibition is featured or not</li>
+<li>time_frames, array of hashes with start_at and end_at key/value pairs for retention times of exhibitions. An exhibition without any timeframes is permanent exhibition.</li>
 </ul>
 
 <h2 id="details-of-a-single-exhibition">Details of a single exhibition</h2>
@@ -363,6 +384,15 @@
             </span><span class="nt">"article"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../article/hintergrund_grau.jpg"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../detail/hintergrund_grau.jpg"</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"time_frames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-28T09:00:00+01:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-04T20:45:00+01:00"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemäldegalerie"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
@@ -382,7 +412,20 @@
 
 <ul>
 <li>location, contains information about the location of the exhibition.</li>
+<li>content, contains key/value pairs of custom defined attributes, e.g. the following:</li>
 </ul>
+<pre class="highlight json"><code><span class="s2">"content"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"cms_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum Besuchertage"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cms_sub_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cms_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Das Museum lädt ein."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"shop_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum Besuchertage"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"shop_sub_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"shop_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Das Museum lädt ein."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"picture_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"picture_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"picture_copyright_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
           <h1 id="tickets">Tickets</h1>
 
@@ -1052,7 +1095,7 @@ duplicate names.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/1"</span>
 </code></pre>
 
-<p>The information is the same as that of the events list response, but with the addition of the description key.</p>
+<p>The information is the same as that of the events list response, but with the addition of the description key and dynamic contents.</p>
 
 <h2 id="calendar-for-a-single-event">Calendar for a single event</h2>
 
@@ -1704,7 +1747,7 @@ duplicate names.</p>
 </code></pre>
 
 <p>The information is the same as that of the tours list response, but with the addition of the description 
-key and some other attributes.</p>
+key and some other attributes like the dynamic content attributes</p>
 
 <h2 id="prices-for-a-tour">Prices for a tour</h2>
 
