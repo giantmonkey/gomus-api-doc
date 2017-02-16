@@ -1067,6 +1067,7 @@ duplicate names.</p>
 <li>by_categories (Array of category names), filter by category names, see categories section</li>
 <li>by_language_ids (Array of language ids), filter by language, see languages section</li>
 <li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
+<li>with_bookings_in_future (Boolean, true|false, default: all), filter events that have bookable dates in the future</li>
 </ul>
 
 <h3 id="available-parameters">Available parameters:</h3>
@@ -1084,7 +1085,9 @@ duplicate names.</p>
 <li>id (integer), the unique database id of the event</li>
 <li>title (string), the name of the event</li>
 <li>sub_title (string), the sub title of the event</li>
-<li>featured, boolean flag of whether the exhibition is featured or not</li>
+<li>featured, boolean flag of whether the event is featured or not</li>
+<li>bookable, boolean flag of whether the event is bookable in the current scope or not</li>
+<li>registerable, boolean flag of whether the event is public registerable or not</li>
 </ul>
 
 <p>plus blocks of attributes for category, picture, location and audiences.</p>
@@ -1095,7 +1098,9 @@ duplicate names.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/1"</span>
 </code></pre>
 
-<p>The information is the same as that of the events list response, but with the addition of the description key and dynamic contents.</p>
+<p>The information is the same as that of the events list response, but with the addition of the description key and dynamic contents.
+If event is registerable and an authenticatable user has the permission, this attribute contains a link to the public
+registration form.</p>
 
 <h2 id="calendar-for-a-single-event">Calendar for a single event</h2>
 
@@ -1230,6 +1235,7 @@ duplicate names.</p>
 <li>sub_title (string), the sub title of the date</li>
 <li>start_time (iso8601), the date&rsquo;s timestamp</li>
 <li>language, with id and name</li>
+<li>registerable, boolean flag of whether the date is public registerable or not</li>
 </ul>
 
 <h2 id="details-for-a-single-date">Details for a single date</h2>
@@ -1287,7 +1293,9 @@ duplicate names.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The detailed view for a single date provides all information needed to create for example an event date booking via the reseller API.</p>
+<p>The detailed view for a single date provides all information needed to create for example an event date booking via the reseller API.
+If date is registerable and an authenticatable user has the permission, this attribute contains a link to the public
+registration form.</p>
 
 <h3 id="response">Response</h3>
 
@@ -1367,6 +1375,7 @@ duplicate names.</p>
 <li><p>by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section</p></li>
 <li><p>by_language_ids (Array of language ids), filter by language, see languages section</p></li>
 <li><p>by_categories (Array of category names), filter by categories, see categories section</p></li>
+<li><p>by_online_bookable (Boolean), set to true to get only the online bookable events</p></li>
 </ul>
 
 <h3 id="available-parameters">Available parameters:</h3>
@@ -1718,6 +1727,7 @@ duplicate names.</p>
 <li>by_language_ids (Array of language ids), filter by language, see languages section</li>
 <li>by_categories (Array of category names), filter by categories, see categories section</li>
 <li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
+<li>with_bookings_in_future (Boolean, true|false, default: all), filter tours that have bookable start times the future</li>
 </ul>
 
 <h3 id="available-parameters">Available parameters:</h3>
@@ -1735,7 +1745,9 @@ duplicate names.</p>
 <li>id (integer), the unique database id of the tour</li>
 <li>title (string), the name of the tour</li>
 <li>sub_title (string), the sub title of the tour</li>
-<li>featured, boolean flag of whether the exhibition is featured or not</li>
+<li>featured, boolean flag of whether the tour is featured or not</li>
+<li>bookable, boolean flag of whether the tour is bookable in the current scope or not</li>
+<li>registerable, boolean flag of whether the tour is public registerable or not</li>
 </ul>
 
 <p>plus blocks of attributes for category, picture, location and audiences.</p>
@@ -1747,7 +1759,9 @@ duplicate names.</p>
 </code></pre>
 
 <p>The information is the same as that of the tours list response, but with the addition of the description 
-key and some other attributes like the dynamic content attributes</p>
+key and some other attributes like the dynamic content attributes
+If tour is registerable and an authenticatable user has the permission, this attribute contains a link to the public
+registration form.</p>
 
 <h2 id="prices-for-a-tour">Prices for a tour</h2>
 

@@ -249,6 +249,8 @@ In a success case a JSON with the valid order will be returned.</p>
 
 <p>Some orders may have an invoice available (indicated by the <code class="prettyprint">invoice</code> attribute in the order).</p>
 
+<p>Some orders may have passbooks for tickets available (indicated by the <code class="prettyprint">passbooks</code> attribute in the ticket sale in order).</p>
+
 <p>Due to the token confirmation, authentication via header request is not needed for the document requests.</p>
 
 <h3 id="tickets">Tickets</h3>
@@ -257,6 +259,15 @@ In a success case a JSON with the valid order will be returned.</p>
 
 <ul>
 <li>ticket_id means the uniq ticket sale id (order -&gt; order item -&gt; ticket sale)</li>
+</ul>
+
+<h3 id="passbooks">Passbooks</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/orders/:order_id/tickets/:ticket_id/passbooks/:barcode.pkpass?token=:token</code></p>
+
+<ul>
+<li>ticket_id means the uniq ticket sale id (order -&gt; order item -&gt; ticket sale)</li>
+<li>barcode means the uniq barcode for each item within a ticket sale (order -&gt; order item -&gt; ticket sale -&gt; barcodes)</li>
 </ul>
 
 <h3 id="events">Events</h3>
