@@ -136,7 +136,7 @@ These codes can be used track entry and exit events.</p>
 <p>The status of a barcode can be queried as follows:</p>
 
 <p><code class="prettyprint">GET https://demo.gomus.de/api/v3/barcodes/:barcode</code></p>
-<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode"</span>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode"</span>
 </code></pre>
 
 <p>If everything is ok and the barcode is still valid a 200 OK is returned.</p>
@@ -165,7 +165,7 @@ The HTTP status code will be 422 Unprocessable Entity.</p>
 <p>To do an actual entry and possibly void the barcode an PUT needs to be sent.</p>
 
 <p><code class="prettyprint">PUT https://demo.gomus.de/api/v3/barcodes/:barcode</code></p>
-<pre class="highlight shell"><code>curl -XPUT <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode"</span>
+<pre class="highlight shell"><code>curl -XPUT -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode"</span>
 </code></pre>
 
 <p>This will return the same responses as the Status API above. 
@@ -180,7 +180,7 @@ HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error.</p>
 <p>This API is for tracking exits</p>
 
 <p><code class="prettyprint">PUT https://demo.gomus.de/api/v3/barcodes/:barcode/exit</code></p>
-<pre class="highlight shell"><code>curl -XPUT <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode/exit"</span>
+<pre class="highlight shell"><code>curl -XPUT -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode/exit"</span>
 </code></pre>
 
 <p>This will return responses in the same structure as the Status API above. 
@@ -195,8 +195,8 @@ HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error. </p>
 </ul>
 
 <p>You can transmit these parameters in the URL. For example:</p>
-<pre class="highlight plaintext"><code>PUT https://demo.gomus.de/api/v3/barcodes/:barcode/exit?location=Haupthaus
-</code></pre>
+
+<p><code class="prettyprint">https://demo.gomus.de/api/v3/barcodes/:barcode/exit?location=Haupthaus</code></p>
 
 <h1 id="best-practices">Best practices</h1>
 
