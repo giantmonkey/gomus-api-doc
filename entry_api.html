@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>go~mus Entry API Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="entry_api" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://gomus.de'>go~mus</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="preparation">Preparation</h1>
+
+<p>Before you can use the go~mus Entry API you will have to register an API account with an API key. 
+Please talk to your contact person in order to get access.</p>
+
+<p>See <a href="public_api.html">detailed documentation on Public API</a> for information on how to request the basic data 
+for events, tours and tickets.</p>
+
+<h1 id="barcodes">Barcodes</h1>
+
+<p>We track tickets, events and tours by using barcodes. The barcodes encode unique codes. 
+These codes can be used track entry and exit events.</p>
+
+<p>Barcodes may be encoded as Code128 or Code39. Additionally barcodes may also be encoded in 2D as a QR-Code. </p>
+
+<h2 id="status-api">Status API</h2>
+
+<p>The status of a barcode can be queried as follows:</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v3/barcodes/:barcode</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode"</span>
+</code></pre>
+
+<p>If everything is ok and the barcode is still valid a 200 OK is returned.</p>
+
+<blockquote>
+<p>Additionally the JSON may contain a message:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eintritte: 1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>If the barcode was already used or is for some other reason invalid then an error gets returned.
+The HTTP status code will be 422 Unprocessable Entity.</p>
+
+<blockquote>
+<p>The JSON if an error occured:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barcode wurde schon eingelöst am 13.03.2017"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="entry-api-voiding-the-barcode">Entry API - Voiding the barcode</h2>
+
+<p>To do an actual entry and possibly void the barcode an PUT needs to be sent.</p>
+
+<p><code class="prettyprint">PUT https://demo.gomus.de/api/v3/barcodes/:barcode</code></p>
+<pre class="highlight shell"><code>curl -XPUT <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode"</span>
+</code></pre>
+
+<p>This will return the same responses as the Status API above. 
+HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error.</p>
+
+<p>The barcode will be voided in the process.</p>
+
+<p>In practice it is common to call the Status API first and then void the barcode.</p>
+
+<h2 id="exit-api-tracking-exits">Exit API - Tracking exits</h2>
+
+<p>This API is for tracking exits</p>
+
+<p><code class="prettyprint">PUT https://demo.gomus.de/api/v3/barcodes/:barcode/exit</code></p>
+<pre class="highlight shell"><code>curl -XPUT <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode/exit"</span>
+</code></pre>
+
+<p>This will return responses in the same structure as the Status API above. 
+HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error. </p>
+
+<h2 id="additional-parameters">Additional Parameters</h2>
+
+<p>The following parameters can be used to set additional infos:</p>
+
+<ul>
+<li>location : string - where did the entry or exit happen</li>
+</ul>
+
+<p>You can transmit these parameters in the URL. For example:</p>
+<pre class="highlight plaintext"><code>PUT https://demo.gomus.de/api/v3/barcodes/:barcode/exit?location=Haupthaus
+</code></pre>
+
+<h1 id="best-practices">Best practices</h1>
+
+<h2 id="turnstiles">Turnstiles</h2>
+
+<p>When using turnstiles it is best practice to only void the barcode if the visitor actually goes through.
+In some cases the visitor may scan his ticket barcode but then not walk through. 
+He should be able to re-scan his ticket barcode and then walk through.  </p>
+
+          <h1 id="errors">Errors</h1>
+
+<p>The go~mus API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The API endpoint requested is for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified record could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access an API endpoint with an invalid method</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too much! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
