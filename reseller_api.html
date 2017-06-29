@@ -555,7 +555,18 @@ In case of errors you will get error messages back as a response.</p>
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">247</span><span class="p">,</span><span class="w">
         </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-07T13:00:00+02:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"reservations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"8CE0mEgjyAvQB1IbPJ4iyg"</span><span class="p">]</span><span class="w">
+        </span><span class="nt">"reservations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"8CE0mEgjyAvQB1IbPJ4iyg"</span><span class="p">],</span><span class="w">
+        </span><span class="nt">"attendees"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Capt'n"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"surname"</span><span class="p">:</span><span class="s2">"Hook"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Peter"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"surname"</span><span class="p">:</span><span class="s2">"Pan"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -567,6 +578,7 @@ In case of errors you will get error messages back as a response.</p>
 <li>quantity (integer), a count &gt; 0</li>
 <li>time (iso8601), the entry timestamp</li>
 <li>reservations (array of tokens), if any (see Tickets -&gt; Reservations for more info)</li>
+<li>attendees (array of objects), needs to be set on purchase when ticket&rsquo;s attendees are required. Attendees require a name and surname. Number of attendees needs to match the ticket sales quantity. </li>
 </ul>
 
 <h3 id="event">Event</h3>
