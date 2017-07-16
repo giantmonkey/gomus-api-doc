@@ -1825,12 +1825,15 @@ registration form.</p>
 <li>customer type related price (&ldquo;Entgelttabelle&rdquo;)</li>
 </ul>
 
-<p>plus additional surcharges, e.g. sunday extra, foreign language extra and so on. All prices depend on the date of the tour, the customer type and the language.</p>
+<p>plus additional surcharges, e.g. sunday extra, foreign language extra and so on. All prices depend on the date and time of the tour, participants and the customer type and the language.</p>
 
 <h3 id="available-parameters">Available parameters:</h3>
 
 <ul>
 <li>date (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
+<li>time (<code class="prettyprint">HH-MM</code>), defaults to 12:00</li>
+<li>participants, defaults to 1</li>
+<li>price_target_audience_id_id (integer), defaults to default PTA (e.g. &ldquo;Privatkunde&rdquo;)</li>
 <li>language_id (integer), defaults to first assigned language of the tour</li>
 </ul>
 
