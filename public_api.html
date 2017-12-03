@@ -466,7 +466,8 @@
         </span><span class="nt">"first_entry"</span><span class="p">:</span><span class="w"> </span><span class="mi">660</span><span class="p">,</span><span class="w">
         </span><span class="nt">"last_entry"</span><span class="p">:</span><span class="w"> </span><span class="mi">990</span><span class="p">,</span><span class="w">
         </span><span class="nt">"personalizeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"attendees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"required"</span><span class="w">
+        </span><span class="nt">"attendees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"required"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"identification"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -483,9 +484,12 @@
 <ul>
 <li>a simple search is available with the <code class="prettyprint">q</code> parameter, e.g. <code class="prettyprint">?q=Modern</code>, see more in the search section</li>
 <li>locales are available with the <code class="prettyprint">locale</code> parameter, see more in the locale section</li>
+<li>by_ticket_ids (Array of ticket ids), filter by specific tickets</li>
 <li>by_museum_ids (Array of museum ids), filter by museums, see museums section</li>
 <li>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</li>
 <li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
+<li>by_ticket_type, (String) (annual, time_slot, normal, default: all but annual)</li>
+<li>by_ticket_types, (Array of annual, time_slot, normal, default: all but annual)</li>
 </ul>
 
 <h3 id="available-parameters">Available parameters:</h3>
@@ -512,13 +516,14 @@
 <li>price_cents (integer), price of the ticket in EUR cents</li>
 <li>vat_pct (float), the tickets tax rate</li>
 <li>tax_included (boolean), whether the tax (if any) is included in price_cents or not</li>
-<li>first_entry (integer), first possible entry in minutes from beginning of day</li>
-<li>last_entry (integer), last possible entry in minutes from beginning of day</li>
+<li>first_entry (integer), first possible entry in minutes from beginning of day, can be combined with <code class="prettyprint">valid_at</code> parameter</li>
+<li>last_entry (integer), last possible entry in minutes from beginning of day, can be combined with <code class="prettyprint">valid_at</code> parameter</li>
 <li>entry_duration (integer), if ticket type is a time slot, the slot duration in minutes, else null</li>
 <li>min_persons (integer), minimum quantity to buy per order</li>
 <li>max_persons (integer), maximum quantity to buy per order</li>
 <li>personalizeable (boolean), weather the ticket can be personalised (e.g. annual tickets)</li>
 <li>attendees (string), when required, the attendees needs to be set on purchase</li>
+<li>identification (string), info attribute for entry system to require manual identification document (e.g. for reduced tickets)</li>
 </ul>
 
 <h2 id="details-of-single-ticket">Details of single ticket</h2>
@@ -564,6 +569,7 @@
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"personalizeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"attendees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"required"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"identification"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemäldegalerie"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
@@ -576,6 +582,12 @@
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>valid_at (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
+</ul>
 
 <h3 id="response">Response</h3>
 
@@ -616,14 +628,15 @@
 
 </span></code></pre>
 
-<p>Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016, 
-the maximum bookable quantity is 15. If only one available time slot is returned, as is the case for day 
-tickets, the time range is up untill the end of the day. </p>
+<p>Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016,
+the maximum bookable quantity is 15. If only one available time slot is returned, as is the case for day
+tickets, the time range is up untill the end of the day.</p>
 
 <h3 id="available-parameters">Available parameters:</h3>
 
 <ul>
 <li>date (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
+<li>reservations, defaults to none</li>
 </ul>
 
 <h3 id="response">Response</h3>
@@ -631,6 +644,10 @@ tickets, the time range is up untill the end of the day. </p>
 <p>The json response contains a data block of available time slots and capacities as a hash (key/value pairs). For day tickets, the first possible entry will be returned.</p>
 
 <p>The capacity check takes all quotas that the ticket belongs to into account. Zero values are not returned.</p>
+
+<h3 id="reservations">Reservations</h3>
+
+<p>Provide an array of reservation tokens to be considered in calculation</p>
 
 <h2 id="calendar-for-tickets">Calendar - for tickets</h2>
 
@@ -688,19 +705,21 @@ tickets, the time range is up untill the end of the day. </p>
 <h3 id="available-filters">Available filters:</h3>
 
 <ul>
+<li>by_ticket_ids (Array of ticket ids), filter by specific tickets</li>
 <li>by_museum_ids (Array of museum ids), filter by museums, see museums section</li>
 <li>by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section</li>
+<li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
+<li>by_ticket_type, (String) (annual, time_slot, normal, default: all but annual)</li>
+<li>by_ticket_types, (Array of annual, time_slot, normal, default: all but annual)</li>
 </ul>
 
 <h3 id="available-parameters">Available parameters:</h3>
 
 <ul>
-<li>ticket_ids (Array), set of tickets to restrict the calendar response to</li>
 <li>start_at (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
 <li>end_at (<code class="prettyprint">YYYY-MM-DD</code>), defaults to end of month</li>
-<li>opening_hours_start, in minutes from beginning of day, defaults to <code class="prettyprint">8 * 60</code></li>
-<li>opening_hours_end, in minutes from beginning of day, defaults to <code class="prettyprint">22 * 60</code></li>
 <li>depth: string, one of <code class="prettyprint">any|all</code>, defaults to <code class="prettyprint">any</code></li>
+<li>reservations, array of reservations made before, defaults to none</li>
 </ul>
 
 <h3 id="response">Response</h3>
@@ -709,9 +728,13 @@ tickets, the time range is up untill the end of the day. </p>
 
 <p>The maximum time frame is 31 days.</p>
 
+<h3 id="reservations">Reservations</h3>
+
+<p>Provide an array of reservation tokens to be considered in calculation</p>
+
 <h2 id="capacities-for-a-set-of-tickets">Capacities for a set of tickets</h2>
 
-<p>A ticket has one or more capacities. Each capacity is the maximum bookable quantity of the ticket for a specific 
+<p>A ticket has one or more capacities. Each capacity is the maximum bookable quantity of the ticket for a specific
 range of time.</p>
 
 <p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tickets/capacities</code></p>
@@ -750,20 +773,20 @@ range of time.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Tickets are assigned to (one or multiple) quotas and reduce each others capacity when ordered. As a result, 
+<p>Tickets are assigned to (one or multiple) quotas and reduce each others capacity when ordered. As a result,
 capacity calculation becomes a little more complicated.</p>
 
-<p>For a single ticket the capacities are calculated for you, see the capacities of a ticket section above. 
-For multiple tickets however, to avoid requesting new capacities for each quantity update, we provide the 
+<p>For a single ticket the capacities are calculated for you, see the capacities of a ticket section above.
+For multiple tickets however, to avoid requesting new capacities for each quantity update, we provide the
 quota ids so that the new ticket capacities can be calculated in the browser.</p>
 
-<p>For example, if two tickets reside in the same quota which has a capacity of 10 for a specific time, 
+<p>For example, if two tickets reside in the same quota which has a capacity of 10 for a specific time,
 if 2 of one ticket is selected only 8 are available for the other.</p>
 
 <p>Note that for a set of tickets with each different entry durations the greatest common divisor of all entry
 durations is used as step size for the capacity time slots. If this is the case, you need to ensure you set
 the time for the ticket to a valid value (first_entry + n * entry_duration). For day tickets you need to set
-first_entry as time of booking. </p>
+first_entry as time of booking.</p>
 
 <h3 id="distinguishing-unavailable-and-sold-out-tickets">Distinguishing unavailable and sold out tickets.</h3>
 
@@ -786,7 +809,7 @@ first_entry as time of booking. </p>
                 </span><span class="nt">"2016-07-06T16:20:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"2016-07-06T16:25:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"2016-07-06T16:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="w">
-            </span><span class="p">}</span><span class="w">            
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
     </span><span class="err">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -804,11 +827,16 @@ first_entry as time of booking. </p>
 
 <ul>
 <li>date (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
+<li>reservations, array of reservations made before, defaults to none</li>
 </ul>
 
 <h3 id="response">Response</h3>
 
 <p>The response is a data block, which contains a hash with quota ids as keys, a list of ticket ids affected by the quota (as a subset of the query) and a list of (still available) capacities as well as the total capacities.</p>
+
+<h3 id="reservations">Reservations</h3>
+
+<p>Provide an array of reservation tokens to be considered in calculation</p>
 
           <h1 id="events">Events</h1>
 
@@ -1019,6 +1047,8 @@ duplicate names.</p>
             </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro | Öffentliche Führung"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60 Minuten | 4 EUR zzg. Eintritt&lt;br&gt;Di – Fr / 16:00 Uhr, Sa und So / 14:30 und 16:00 Uhr&lt;br&gt;"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bookable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"registerable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="w">
@@ -1123,72 +1153,7 @@ registration form.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/events/1/calendar"</span>
 </code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this (with <code class="prettyprint">depth=any</code>, the default):</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"2016-07-24"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"2016-07-25"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"2016-07-26"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"2016-07-27"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"2016-07-28"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"2016-07-29"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"2016-07-30"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"2016-07-31"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
-<p>Example output with <code class="prettyprint">depth=all</code>:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"2016-07-10"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22973</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101174</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-10T16:00:00+02:00"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"booked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"max_per_registration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"2016-07-11"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-
-        </span><span class="err">...</span><span class="w">
-    </span><span class="err">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-
-<p>The calender for a single event provides a fast way to check when the event has dates or not. With the default mode, returns a simple boolean as the value for each day in the range specified. With depth <code class="prettyprint">all</code> we get the details of the dates available for each day as well. However, this calculation will take longer.</p>
-
-<h3 id="available-filters">Available filters:</h3>
-
-<ul>
-<li>by_language_ids (Array of language ids), filter by language, see languages section</li>
-<li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
-</ul>
-
-<h3 id="available-parameters">Available parameters:</h3>
-
-<ul>
-<li>start_at (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
-<li>end_at (<code class="prettyprint">YYYY-MM-DD</code>), defaults to end of month</li>
-<li>opening_hours_start, in minutes from beginning of day, defaults to <code class="prettyprint">8 * 60</code></li>
-<li>opening_hours_end, in minutes from beginning of day, defaults to <code class="prettyprint">22 * 60</code></li>
-<li>depth: string, one of <code class="prettyprint">any|all</code>, defaults to <code class="prettyprint">any</code></li>
-</ul>
+<p><strong>Note</strong>: This route is obsolete. Please use <code class="prettyprint">api/v4/calendar?by_event_ids[]=:id</code></p>
 
 <h2 id="dates-for-a-single-event">Dates for a single event</h2>
 
@@ -1202,21 +1167,31 @@ registration form.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22974</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101174</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"exhibition_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2057</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"museum_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1065</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"exhibition_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"museum_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Öffentliche Führung"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"filtername"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bookable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"registerable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Termin #241"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-10T14:30:00+02:00"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-03T13:00:00+01:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"booked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"max_per_registration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsch"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -1229,6 +1204,13 @@ registration form.</p>
 </span></code></pre>
 
 <p>Queries the available dates for a specific event. The default shows only dates for today, or specified by the <code class="prettyprint">date</code> parameter. A range of up to 31 days can be queried by using the <code class="prettyprint">start_at</code> and <code class="prettyprint">end_at</code> parameter.</p>
+
+<h3 id="available-filters">Available filters:</h3>
+
+<ul>
+<li>by_language_ids (Array of language ids), filter by date language, see languages section</li>
+<li>by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)</li>
+</ul>
 
 <h3 id="available-parameters">Available parameters:</h3>
 
@@ -1253,7 +1235,9 @@ registration form.</p>
 <li>sub_title (string), the sub title of the date</li>
 <li>start_time (iso8601), the date&rsquo;s timestamp</li>
 <li>language, with id and name</li>
-<li>registerable, boolean flag of whether the date is public registerable or not</li>
+<li>bookable, boolean flag of whether the event is bookable in the current scope or not</li>
+<li>registerable, boolean flag of whether the event is public registerable or not</li>
+<li>seats, further information for available seats. <code class="prettyprint">max_per_registration</code> indicates the limit for seats per order</li>
 </ul>
 
 <h2 id="details-for-a-single-date">Details for a single date</h2>
@@ -1275,6 +1259,8 @@ registration form.</p>
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"öffentliche Führung"</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"bookable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"registerable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1475,8 +1461,6 @@ registration form.</p>
 <ul>
 <li>start_at (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
 <li>end_at (<code class="prettyprint">YYYY-MM-DD</code>), defaults to end of month</li>
-<li>opening_hours_start, in minutes from beginning of day, defaults to <code class="prettyprint">8 * 60</code></li>
-<li>opening_hours_end, in minutes from beginning of day, defaults to <code class="prettyprint">22 * 60</code></li>
 <li>depth: string, one of <code class="prettyprint">any|all</code>, defaults to <code class="prettyprint">any</code></li>
 </ul>
 
@@ -1684,11 +1668,14 @@ duplicate names.</p>
             </span><span class="nt">"museum_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
             </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"El Siglo de Oro | Gruppenführung"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"sub_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60 Minuten | 90 EUR zzgl. Eintritt &lt;br&gt;Buchung 14 Tage im Voraus&lt;br&gt;(Gruppen bis 25 Personen)"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bookable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"registerable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Führung"</span><span class="w">
             </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"equipment"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1769,6 +1756,7 @@ duplicate names.</p>
 <li>featured, boolean flag of whether the tour is featured or not</li>
 <li>bookable, boolean flag of whether the tour is bookable in the current scope or not</li>
 <li>registerable, boolean flag of whether the tour is public registerable or not</li>
+<li>equipment, boolean flag of wheather additional equipment is available (or necessary) for booking of tour</li>
 </ul>
 
 <p>plus blocks of attributes for category, picture, location and audiences.</p>
@@ -1783,6 +1771,106 @@ duplicate names.</p>
 key and some other attributes like the dynamic content attributes
 If tour is registerable and an authenticatable user has the permission, this attribute contains a link to the public
 registration form.</p>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>The detail response contains a <code class="prettyprint">limitations</code> block like this:</p>
+<pre class="highlight json"><code><span class="w">  </span><span class="s2">"limitations"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="err">,</span><span class="w">
+</span></code></pre>
+
+<p>Currently, the only additional limitation is the language. This means, that availability of a tour depends on selected language.</p>
+
+<h2 id="equipment-for-a-tour">Equipment for a tour</h2>
+
+<p>The detail response contains a <code class="prettyprint">equipment</code> block as array with available equipment for booking.</p>
+
+<p>Equipment overview for a tour can be accessed like this:</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/:id/equipments?date=2017-06-11</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/1/equipments?date=2017-06-11"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"2016-07-06T11:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T11:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T12:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T12:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T13:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T13:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T14:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T14:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T15:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T15:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"2016-07-06T16:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>The Response contains  maximal available count by date for each equipment category for this tour</p>
+
+<h2 id="equipment-details-for-a-tour">Equipment details for a tour</h2>
+
+<p>Equipment details for a tour can be accessed like this:</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/:id/equipments/1/?date=2017-06-11</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/1/equipments/1/?date=2017-06-11"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2016-07-06T11:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T11:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T12:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T12:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T13:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T13:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T14:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T14:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T15:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T15:30:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"2016-07-06T16:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>The Response contains  maximal available count by date for the specific equipment category for this tour</p>
+
+<h2 id="equipment-timestamp-details-for-a-tour">Equipment timestamp details for a tour</h2>
+
+<p>Equipment details for a tour based on a specific timestamp can be accessed like this:</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tours/:id/equipments/1/:timestamp</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/1/equipments/1/2017-06-11T11:00:00+02:00"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2016-07-06T11:00:00+02:00"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>The Response contains  maximal available count by date for the specific equipment category for this tour at a specific timestamp.</p>
 
 <h2 id="prices-for-a-tour">Prices for a tour</h2>
 
@@ -1833,6 +1921,7 @@ registration form.</p>
 <li>date (<code class="prettyprint">YYYY-MM-DD</code>), defaults to today</li>
 <li>time (<code class="prettyprint">HH-MM</code>), defaults to 12:00</li>
 <li>participants, defaults to 1</li>
+<li>customer_adress_id, defaults to null. Neccessary for predetermined discounts</li>
 <li>price_target_audience_id_id (integer), defaults to default PTA (e.g. &ldquo;Privatkunde&rdquo;)</li>
 <li>language_id (integer), defaults to first assigned language of the tour</li>
 </ul>

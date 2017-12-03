@@ -491,6 +491,17 @@ Please pay special attention to the required quiet zone and minimal size require
 
 <p>The price of a tour booking depends on several pricing factors like surcharges and other fees. The <code class="prettyprint">prices</code> array holds all single price items which are summed up to the order items <code class="prettyprint">price_cents</code> total.</p>
 
+<h3 id="equipments">Equipments</h3>
+
+<p>The tour item may contain an additional block for booking equipment at the <strong>same</strong> start time:</p>
+<pre class="highlight json"><code><span class="w">    </span><span class="err">equipment:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="err">id:</span><span class="w"> </span><span class="err">1,</span><span class="w">
+        </span><span class="err">quantity:</span><span class="w"> </span><span class="err">3</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span></code></pre>
+
 <h1 id="creating-an-order">Creating an Order</h1>
 
 <p>An order is created by a POST request to the orders endpoint:</p>
@@ -700,7 +711,7 @@ In case of errors you will get error messages back as a response.</p>
           <h1 id="ticket-reservations">Ticket Reservations</h1>
 
 <p>Tickets can be (short term) reserved for 5 minutes each. The reservation can be updated (and refreshed) for a max of 60 minutes 
-reservation time.</p>
+reservation time. Note that the ticket itself must be bookable for the time of reservation.</p>
 
 <h3 id="creating-a-reservation">Creating a reservation</h3>
 
