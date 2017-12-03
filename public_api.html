@@ -834,6 +834,8 @@ first_entry as time of booking.</p>
 
 <p>The response is a data block, which contains a hash with quota ids as keys, a list of ticket ids affected by the quota (as a subset of the query) and a list of (still available) capacities as well as the total capacities.</p>
 
+<p>Note that the ticket response block may not contain all of your requested ticket ids. It only contains tickets bookable for your current user.</p>
+
 <h3 id="reservations">Reservations</h3>
 
 <p>Provide an array of reservation tokens to be considered in calculation</p>
