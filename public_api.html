@@ -455,6 +455,7 @@
             </span><span class="mi">33</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1400</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tax_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"entry_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
@@ -514,6 +515,7 @@
 <li>exhibition_ids, array of exhibition ids to whick the ticket belongs, can be empty</li>
 <li>quota_ids, array of quota ids to which the ticket belongs, can be empty</li>
 <li>price_cents (integer), price of the ticket in EUR cents</li>
+<li>discount (integer), discount in percent (0-100) to apply on total price for this item if ordered</li>
 <li>vat_pct (float), the tickets tax rate</li>
 <li>tax_included (boolean), whether the tax (if any) is included in price_cents or not</li>
 <li>first_entry (integer), first possible entry in minutes from beginning of day, can be combined with <code class="prettyprint">valid_at</code> parameter</li>
@@ -555,6 +557,7 @@
         </span><span class="p">],</span><span class="w">
         </span><span class="nt">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1400</span><span class="p">,</span><span class="w">
         </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tax_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"first_entry"</span><span class="p">:</span><span class="w"> </span><span class="mi">660</span><span class="p">,</span><span class="w">
         </span><span class="nt">"last_entry"</span><span class="p">:</span><span class="w"> </span><span class="mi">990</span><span class="p">,</span><span class="w">
@@ -1268,6 +1271,7 @@ registration form.</p>
         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-10T14:30:00+02:00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tax_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -1310,6 +1314,7 @@ registration form.</p>
 
 <ul>
 <li>vat_pct (float), the pricing tax rate</li>
+<li>discount (integer), discount in percent (0-100) to apply on total price for this item if ordered</li>
 <li>tax_included (boolean), whether the tax (if any) is included or not</li>
 </ul>
 
@@ -1902,6 +1907,7 @@ registration form.</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"vat_pct"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nt">"tax_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 
 </span><span class="p">}</span><span class="w">
@@ -1934,6 +1940,7 @@ registration form.</p>
 
 <ul>
 <li>vat_pct (float), the pricing tax rate</li>
+<li>discount (integer), discount in percent (0-100) to apply on total price for this item if ordered</li>
 <li>tax_included (boolean), whether the tax (if any) is included or not</li>
 </ul>
 
