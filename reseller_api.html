@@ -621,6 +621,29 @@ In case of errors you will get error messages back as a response.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>or with specific seating options:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28227</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"seat_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"scale_price_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="w">
+
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"seat_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"scale_price_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>An event item has a similar structure:</p>
 
 <ul>
@@ -637,6 +660,13 @@ In case of errors you will get error messages back as a response.</p>
 
 <ul>
 <li>quantities (object), the scale price id as the key, and the quantity as the value.</li>
+</ul>
+
+<p>If the event contains seatings, the strucuture has to contain info about the specific seats:</p>
+
+<ul>
+<li>seat_id (integer), id of the specific seat</li>
+<li>scale_price_id (integer), id of the scale price</li>
 </ul>
 
 <h3 id="tour">Tour</h3>

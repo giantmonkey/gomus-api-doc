@@ -870,13 +870,13 @@ first_entry as time of booking.</p>
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinder / Familien"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w"> 
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all event categories to build up filters. 
+<p>The json response contains a list of all event categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.</p>
 
@@ -905,7 +905,7 @@ duplicate names.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all languages used by online bookable event products to build up filters. </p>
+<p>The json response contains a list of all languages used by online bookable event products to build up filters.</p>
 
 <h2 id="event-tags">Event tags</h2>
 
@@ -1280,6 +1280,50 @@ registration form.</p>
             </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
             </span><span class="nt">"max_per_registration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"seatings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"blocked_seats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="w">
+                </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"color_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#bdbdbd"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"row_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"row_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rollstuhlplatz"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"visual_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api/v4/seatings/1.svg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemäldegalerie"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
@@ -1336,6 +1380,14 @@ registration form.</p>
 
 <p>The location block provides information about the event starting/meeting point and address.</p>
 
+<h3 id="seatings">Seatings</h3>
+
+<p>Events can contain additional data for seating plans.
+If the <code class="prettyprint">seatings</code> array contains data, specific seats must be referenced in the order item when ordering (see prices).</p>
+
+<p>A visual seating plan is provided in the seatings data as well as all the information needed (categories, rows, types, seats, blocked seats and reservations) for providing your own visual representation, or seat selection widget.
+The visual seating plan is a standardized SVG graphic for display and manipulation via Javascript.</p>
+
 <h3 id="prices">Prices</h3>
 
 <p>The prices block contains one ore more price objects in an array. There are two types of price objects for event date bookings:</p>
@@ -1348,18 +1400,20 @@ registration form.</p>
 <li>price_cents (integer) price in EUR cents</li>
 </ul>
 
-<p>or scale prices with six attributes:</p>
+<p>or scale prices with following attributes:</p>
 
 <ul>
 <li>scale_price_id (integer) internal database id for the scale price definition</li>
-<li>title(string) title of scale price, e.g. &ldquo;regular fee&rdquo; or &ldquo;reduced fee&rdquo;</li>
-<li>description(text)</li>
+<li>seat_category_id (integer) internal database id for the seat category definition (only for events with seating plan)</li>
+<li>seat_category_title (string) title or the seat category (only for events with seating plan)</li>
+<li>title (string) title of scale price, e.g. &ldquo;regular fee&rdquo; or &ldquo;reduced fee&rdquo;</li>
+<li>description (text) longer, more detailed description for the scale price</li>
 <li>group (boolean), whether the price is for the whole group or per participant (per seat)</li>
 <li>optional (boolean), whether the price is a choice or not</li>
 <li>price_cents (integer) price in EUR cents</li>
 </ul>
 
-<p>Usualy, there will be one default price or at least one scale pice.</p>
+<p>Usually, there will be one default price or at least one scale price.</p>
 
 <h2 id="global-dates-list">Global dates list</h2>
 
@@ -1431,7 +1485,7 @@ registration form.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all languages used by online bookable date to build up filters. </p>
+<p>The json response contains a list of all languages used by online bookable date to build up filters.</p>
 
 <h2 id="global-events-calendar">Global events calendar</h2>
 
@@ -1443,7 +1497,7 @@ registration form.</p>
 <p>The above command returns JSON structured like the single events calendar, but for all events.</p>
 </blockquote>
 
-<p>The global calender provides a nice way to check wether dates are available for a day in range or not. With the default mode, the return value for each day in the specified range is a simple boolean.</p>
+<p>The global calender provides a nice way to check whether dates are available for a day in range or not. With the default mode, the return value for each day in the specified range is a simple boolean.</p>
 
 <h3 id="available-filters">Available filters:</h3>
 
