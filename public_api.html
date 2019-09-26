@@ -118,7 +118,7 @@
       <div class="content">
         <h1 id="preparation">Preparation</h1>
 
-<p>The use of the go~mus public API does not require authentication and no API key. </p>
+<p>The use of the go~mus public API does not require authentication and no API key.</p>
 
 <p>See <a href="reseller_api.html">detailed documentation on Reseller API</a> on how to create orders and sell end customer stuff like tickets, events and tours.</p>
 
@@ -811,6 +811,69 @@ first_entry as time of booking.</p>
 <h3 id="reservations">Reservations</h3>
 
 <p>Provide an array of reservation tokens to be considered in calculation</p>
+
+<h2 id="contents-for-a-set-of-tickets">Contents for a set of tickets</h2>
+
+<p>This call returns dynamic content for a set of tickets. Use this to optimise content fetching.</p>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/tickets/content</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tickets/content?ticket_ids[]=14&amp;ticket_ids[]=11"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"shop_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Ticket Title"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"shop_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another Ticket Title"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"shop_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Description DE&lt;/p&gt;"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="available-filters">Available filters:</h3>
+
+<ul>
+<li>locales are available with the <code class="prettyprint">locale</code> parameter, see more in the locale section</li>
+</ul>
+
+<h3 id="necessary-parameters">Necessary parameters:</h3>
+
+<ul>
+<li>ticket_ids (Array of ticket ids)</li>
+</ul>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>attr, defaults to <code class="prettyprint">nil</code>, can be used to only query a specific attribute per set</li>
+<li>per_page, defaults to system default (<code class="prettyprint">25</code>)</li>
+<li>page, defaults to <code class="prettyprint">1</code></li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a list of contents for a set of tickets as an array and a meta block.</p>
+
+<ul>
+<li>content, contains key/value pairs of a specific attribute per set of tickets</li>
+</ul>
 
           <h1 id="events">Events</h1>
 
@@ -2182,8 +2245,130 @@ every translatable attribute as a hash with the requested locales as keys and th
 
         </span><span class="err">...</span><span class="w">
     </span><span class="err">}</span><span class="w">
-</span><span class="p">}</span><span class="w">   
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+          <h1 id="other-data">Other Data</h1>
+
+<p>Provides information about other various entities</p>
+
+<h2 id="countries">Countries</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/countries</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/countries"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"countries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutschland"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DE"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vereinigtes Königreich"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Frankreich"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">249</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>per_page, defaults to system default (<code class="prettyprint">25</code>)</li>
+<li>page, defaults to <code class="prettyprint">1</code></li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a list of countries as an array and a meta block.</p>
+
+<ul>
+<li>name (string), the name of the country</li>
+<li>id (integer), the unique database id of the country</li>
+<li>code (string), a code of two letters to represent the country</li>
+</ul>
+
+<h2 id="states">States</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/states</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/states"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"states"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baden-Württemberg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bayern"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brandenburg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bremen"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>per_page, defaults to system default (<code class="prettyprint">25</code>)</li>
+<li>page, defaults to <code class="prettyprint">1</code></li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a list of states as an array and a meta block.</p>
+
+<ul>
+<li>name (string), the name of the state</li>
+<li>id (integer), the unique database id of the state</li>
+<li>country_id (integer), the unique database id of the country to which the state belongs</li>
+</ul>
 
           <h1 id="errors">Errors</h1>
 

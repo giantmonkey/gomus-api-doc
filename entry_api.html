@@ -118,18 +118,18 @@
       <div class="content">
         <h1 id="preparation">Preparation</h1>
 
-<p>Before you can use the go~mus Entry API you will have to register an API account with an API key. 
+<p>Before you can use the go~mus Entry API you will have to register an API account with an API key.
 Please talk to your contact person in order to get access.</p>
 
-<p>See <a href="public_api.html">detailed documentation on Public API</a> for information on how to request the basic data 
+<p>See <a href="public_api.html">detailed documentation on Public API</a> for information on how to request the basic data
 for events, tours and tickets.</p>
 
 <h1 id="barcodes">Barcodes</h1>
 
-<p>We track tickets, events and tours by using barcodes. The barcodes encode unique codes. 
+<p>We track tickets, events and tours by using barcodes. The barcodes encode unique codes.
 These codes can be used track entry and exit events.</p>
 
-<p>Barcodes may be encoded as Code128 or Code39. Additionally barcodes may also be encoded in 2D as a QR-Code. </p>
+<p>Barcodes may be encoded as Code128 or Code39. Additionally barcodes may also be encoded in 2D as a QR-Code.</p>
 
 <h2 id="status-api">Status API</h2>
 
@@ -168,12 +168,51 @@ The HTTP status code will be 422 Unprocessable Entity.</p>
 <pre class="highlight shell"><code>curl -XPUT -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode"</span>
 </code></pre>
 
-<p>This will return the same responses as the Status API above. 
+<p>This will return the same responses as the Status API above.
 HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error.</p>
 
 <p>The barcode will be voided in the process.</p>
 
 <p>In practice it is common to call the Status API first and then void the barcode.</p>
+
+<h2 id="entry-api-scans">Entry API - Scans</h2>
+
+<p>This API is for tracking entry.</p>
+
+<h3 id="showing-the-scan-event">Showing the scan event</h3>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/entry/scans/:scan</code></p>
+
+<h3 id="updating-the-scan-event">Updating the scan event</h3>
+
+<p><code class="prettyprint">PUT https://demo.gomus.de/api/v4/entry/scans/:scan</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/entry/scans/3"</span>
+    -XPUT --data <span class="s2">"scan[people_count]=3"</span>
+    -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"scan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111yxqgyxGWWVmXEg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entry_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-03T12:55:53+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"people_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_entry"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-03T21:53:20+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-03T12:55:53+02:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a serialized scan event.</p>
 
 <h2 id="exit-api-tracking-exits">Exit API - Tracking exits</h2>
 
@@ -183,8 +222,8 @@ HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error.</p>
 <pre class="highlight shell"><code>curl -XPUT -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="s2">"https://demo.gomus.de/api/v3/barcodes/:barcode/exit"</span>
 </code></pre>
 
-<p>This will return responses in the same structure as the Status API above. 
-HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error. </p>
+<p>This will return responses in the same structure as the Status API above.
+HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error.</p>
 
 <h2 id="additional-parameters">Additional Parameters</h2>
 
@@ -203,8 +242,8 @@ HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error. </p>
 <h2 id="turnstiles">Turnstiles</h2>
 
 <p>When using turnstiles it is best practice to only void the barcode if the visitor actually goes through.
-In some cases the visitor may scan his ticket barcode but then not walk through. 
-He should be able to re-scan his ticket barcode and then walk through.  </p>
+In some cases the visitor may scan his ticket barcode but then not walk through.
+He should be able to re-scan his ticket barcode and then walk through.</p>
 
           <h1 id="errors">Errors</h1>
 
