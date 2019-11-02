@@ -1587,7 +1587,7 @@ The visual seating plan is a standardized SVG graphic for display and manipulati
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all tour categories to build up filters. 
+<p>The json response contains a list of all tour categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.</p>
 
@@ -1616,7 +1616,7 @@ duplicate names.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all languages used by online bookable tour products to build up filters. </p>
+<p>The json response contains a list of all languages used by online bookable tour products to build up filters.</p>
 
 <h2 id="tour-tags">Tour tags</h2>
 
@@ -1861,7 +1861,7 @@ duplicate names.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/tours/1"</span>
 </code></pre>
 
-<p>The information is the same as that of the tours list response, but with the addition of the description 
+<p>The information is the same as that of the tours list response, but with the addition of the description
 key and some other attributes like the dynamic content attributes
 If tour is registerable and an authenticatable user has the permission, this attribute contains a link to the public
 registration form.</p>
@@ -2125,6 +2125,8 @@ registration form.</p>
 
 <p>The start times calender for a tour provides a fast way to check when the tour has possible start times or not within a specified time range. With the default mode (<code class="prettyprint">depth=any</code>), the return value for each day in the range specified is a simple boolean.</p>
 
+<p><strong>Note</strong>: An unauthenticated (public) API request of this type will only return a result if the corresponding product has the sales channel &ldquo;Shop und Reseller&rdquo; activated.</p>
+
 <h3 id="available-parameters">Available parameters:</h3>
 
 <ul>
@@ -2166,6 +2168,8 @@ registration form.</p>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p><strong>Note</strong>: An unauthenticated (public) API request of this type will only return a result if the corresponding product has the sales channel &ldquo;Shop und Reseller&rdquo; activated.</p>
 
 <h3 id="available-parameters">Available parameters:</h3>
 
@@ -2368,6 +2372,54 @@ every translatable attribute as a hash with the requested locales as keys and th
 <li>name (string), the name of the state</li>
 <li>id (integer), the unique database id of the state</li>
 <li>country_id (integer), the unique database id of the country to which the state belongs</li>
+</ul>
+
+<h2 id="dispatch-modes">Dispatch Modes</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/dispatch_modes</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/dispatch_modes"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"dispatch_modes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-Mail"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Post"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abholung im Museum"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>per_page, defaults to system default (<code class="prettyprint">25</code>)</li>
+<li>page, defaults to <code class="prettyprint">1</code></li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>The json response contains a list of dispatch modes as an array and a meta block.</p>
+
+<ul>
+<li>name (string), the name of the dispatch mode</li>
+<li>id (integer), the unique database id of the dispatch mode</li>
 </ul>
 
           <h1 id="errors">Errors</h1>
