@@ -180,7 +180,7 @@
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of museums as an array and a meta block.</p>
+<p>The JSON response contains a list of museums as an array and a meta block.</p>
 
 <ul>
 <li>id (integer), the unique database id of the museum</li>
@@ -231,7 +231,7 @@
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a museum block with information for that museum. The information is the same as that of the museums list response, but with the addition of a location block.</p>
+<p>The JSON response contains a museum block with information for that museum. The information is the same as that of the museums list response, but with the addition of a location block.</p>
 
 <ul>
 <li>location, contains information about the location of the museum.</li>
@@ -273,7 +273,7 @@
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains the begin and end of the opening hours as datetimes.</p>
+<p>The JSON response contains the begin and end of the opening hours as datetimes.</p>
 
           <h1 id="exhibitions">Exhibitions</h1>
 
@@ -344,7 +344,7 @@
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of exhibitions as an array and a meta block.</p>
+<p>The JSON response contains a list of exhibitions as an array and a meta block.</p>
 
 <ul>
 <li>id (integer), the unique database id of the exhibition</li>
@@ -408,7 +408,7 @@
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains an exhibition block with information for that exhibition. The information is the same as that of the exhibitions list response, but with the addition of a location block.</p>
+<p>The JSON response contains an exhibition block with information for that exhibition. The information is the same as that of the exhibitions list response, but with the addition of a location block.</p>
 
 <ul>
 <li>location, contains information about the location of the exhibition.</li>
@@ -495,7 +495,7 @@
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of tickets as an array and a meta block.</p>
+<p>The JSON response contains a list of tickets as an array and a meta block.</p>
 
 <ul>
 <li>id (integer), the unique database id of the ticket</li>
@@ -579,7 +579,7 @@
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a ticket block with information for that the information is the same as that of the tickets list response, but with the addition of a couple of keys.</p>
+<p>The JSON response contains a ticket block with information for that the information is the same as that of the tickets list response, but with the addition of a couple of keys.</p>
 
 <ul>
 <li>after_sale_information (string), information to be shown after the sale of a ticket. Can contain html elements.</li>
@@ -617,7 +617,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016,
+<p>Using the JSON response on the right as an example, between 11.00 and 11.30 on the 6th July 2016,
 the maximum bookable quantity is 15. If only one available time slot is returned, as is the case for day
 tickets, the time range is up untill the end of the day.</p>
 
@@ -630,7 +630,7 @@ tickets, the time range is up untill the end of the day.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a data block of available time slots and capacities as a hash (key/value pairs). For day tickets, the first possible entry will be returned.</p>
+<p>The JSON response contains a data block of available time slots and capacities as a hash (key/value pairs). For day tickets, the first possible entry will be returned.</p>
 
 <p>The capacity check takes all quotas that the ticket belongs to into account. Zero values are not returned.</p>
 
@@ -869,7 +869,7 @@ first_entry as time of booking.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of contents for a set of tickets as an array and a meta block.</p>
+<p>The JSON response contains a list of contents for a set of tickets as an array and a meta block.</p>
 
 <ul>
 <li>content, contains key/value pairs of a specific attribute per set of tickets</li>
@@ -908,7 +908,7 @@ first_entry as time of booking.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all event categories to build up filters.
+<p>The JSON response contains a list of all event categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.</p>
 
@@ -937,7 +937,7 @@ duplicate names.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all languages used by online bookable event products to build up filters.</p>
+<p>The JSON response contains a list of all languages used by online bookable event products to build up filters.</p>
 
 <h2 id="event-tags">Event tags</h2>
 
@@ -1064,7 +1064,7 @@ duplicate names.</p>
 
 <h3 id="tag-responses">Tag responses</h3>
 
-<p>The json response contains a list of used event tags by category to build up filters.</p>
+<p>The JSON response contains a list of used event tags by category to build up filters.</p>
 
 <h2 id="list-of-events">List of events</h2>
 
@@ -1161,7 +1161,7 @@ duplicate names.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of events as an array and a meta block.</p>
+<p>The JSON response contains a list of events as an array and a meta block.</p>
 
 <ul>
 <li>id (integer), the unique database id of the event</li>
@@ -1261,7 +1261,7 @@ registration form.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of dates as an array and a meta block.</p>
+<p>The JSON response contains a list of dates as an array and a meta block.</p>
 
 <ul>
 <li>id (integer), the unique database id of the events&rsquo; date</li>
@@ -1386,7 +1386,7 @@ registration form.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains more attributes than in the overview:</p>
+<p>The JSON response contains more attributes than in the overview:</p>
 
 <ul>
 <li>vat_pct (float), the pricing tax rate</li>
@@ -1489,7 +1489,7 @@ The visual seating plan is a standardized SVG graphic for display and manipulati
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of dates for all events as an array and a meta block.</p>
+<p>The JSON response contains a list of dates for all events as an array and a meta block.</p>
 
 <h2 id="date-languages">Date languages</h2>
 
@@ -1518,7 +1518,7 @@ The visual seating plan is a standardized SVG graphic for display and manipulati
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all languages used by online bookable date to build up filters.</p>
+<p>The JSON response contains a list of all languages used by online bookable date to build up filters.</p>
 
 <h2 id="global-events-calendar">Global events calendar</h2>
 
@@ -1587,7 +1587,7 @@ The visual seating plan is a standardized SVG graphic for display and manipulati
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all tour categories to build up filters.
+<p>The JSON response contains a list of all tour categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.</p>
 
@@ -1616,7 +1616,7 @@ duplicate names.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of all languages used by online bookable tour products to build up filters.</p>
+<p>The JSON response contains a list of all languages used by online bookable tour products to build up filters.</p>
 
 <h2 id="tour-tags">Tour tags</h2>
 
@@ -1743,7 +1743,7 @@ duplicate names.</p>
 
 <h3 id="tag-responses">Tag responses</h3>
 
-<p>The json response contains a list of used tour tags by category to build up filters.</p>
+<p>The JSON response contains a list of used tour tags by category to build up filters.</p>
 
 <h2 id="list-of-tours">List of tours</h2>
 
@@ -1841,7 +1841,7 @@ duplicate names.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of tours as an array and a meta block.</p>
+<p>The JSON response contains a list of tours as an array and a meta block.</p>
 
 <ul>
 <li>id (integer), the unique database id of the tour</li>
@@ -2023,7 +2023,7 @@ registration form.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains the following attributes:</p>
+<p>The JSON response contains the following attributes:</p>
 
 <ul>
 <li>vat_pct (float), the pricing tax rate</li>
@@ -2302,7 +2302,7 @@ every translatable attribute as a hash with the requested locales as keys and th
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of countries as an array and a meta block.</p>
+<p>The JSON response contains a list of countries as an array and a meta block.</p>
 
 <ul>
 <li>name (string), the name of the country</li>
@@ -2366,7 +2366,7 @@ every translatable attribute as a hash with the requested locales as keys and th
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of states as an array and a meta block.</p>
+<p>The JSON response contains a list of states as an array and a meta block.</p>
 
 <ul>
 <li>name (string), the name of the state</li>
@@ -2415,7 +2415,7 @@ every translatable attribute as a hash with the requested locales as keys and th
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of dispatch modes as an array and a meta block.</p>
+<p>The JSON response contains a list of dispatch modes as an array and a meta block.</p>
 
 <ul>
 <li>name (string), the name of the dispatch mode</li>

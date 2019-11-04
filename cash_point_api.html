@@ -118,10 +118,10 @@
       <div class="content">
         <h1 id="preparation">Preparation</h1>
 
-<p>Before you can use the go~mus Cash Point API you will have to register a cash point account with an API key. 
+<p>Before you can use the go~mus Cash Point API you will have to register a cash point account with an API key.
 Please talk to your contact person in order to get access.</p>
 
-<p>See <a href="public_api.html">detailed documentation on Public API</a> for information on how to request the basic data 
+<p>See <a href="public_api.html">detailed documentation on Public API</a> for information on how to request the basic data
 for events, tours and tickets.</p>
 
 <h1 id="orders">Orders</h1>
@@ -142,7 +142,7 @@ for the orders placed by the cash point, the filter <code class="prettyprint">on
 <li>only_my_orders (boolean, true|false, default: all)</li>
 </ul>
 
-<p>See <a href="reseller_api.html">detailed documentation on Reseller API</a> for information on how to create an order 
+<p>See <a href="reseller_api.html">detailed documentation on Reseller API</a> for information on how to create an order
 for events, tours and tickets against the orders end point.</p>
 
 <h1 id="bookings">Bookings</h1>
@@ -243,7 +243,7 @@ list for events.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of existing bookings as an array and a meta block.</p>
+<p>The JSON response contains a list of existing bookings as an array and a meta block.</p>
 
 <ul>
 <li>id (integer), the unique database id of the booking</li>
@@ -336,7 +336,7 @@ list for events.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains a list of existing bookings as an array and a meta block.</p>
+<p>The JSON response contains a list of existing bookings as an array and a meta block.</p>
 
 <ul>
 <li>id (integer), the unique database id of the booking</li>
@@ -407,7 +407,7 @@ list for events.</p>
 
 <h3 id="response">Response</h3>
 
-<p>The json response contains details for a booking like in the list view, but with a few additional information.</p>
+<p>The JSON response contains details for a booking like in the list view, but with a few additional information.</p>
 
 <ul>
 <li>prices: an array of price objects, containing both default and custom booking prices.</li>
@@ -417,7 +417,7 @@ list for events.</p>
 
 <h2 id="changing-prices">Changing prices</h2>
 
-<p>It is possible to add and update custom booking prices unless the booking has been payed already. It is not possible 
+<p>It is possible to add and update custom booking prices unless the booking has been payed already. It is not possible
 to change the default prices but e.g. give a discount and add additional custom items.</p>
 
 <p>Note that the cash point has only access to customer booking prices and can change only custom type prices.</p>
