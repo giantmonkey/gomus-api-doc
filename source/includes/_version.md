@@ -6,6 +6,8 @@ The system and api version is available at each instance:
 
 `GET https://demo.gomus.de/api/v4/version`
 
+**Note**: The pagination limit (`per_page`) defaults to `100` for an authenticated api user
+
 ```shell
 curl "https://demo.gomus.de/api/v4/version"
 ```
@@ -20,7 +22,8 @@ curl "https://demo.gomus.de/api/v4/version"
         "release": "Bubbles",
         "time": "2017-12-03T10:49:15+02:00",
         "zone": "Europe/Berlin",
-        "currency": "EUR"
+        "currency": "EUR",
+        "per_page": 25
     }
 }
 ```
