@@ -29,7 +29,9 @@ curl "https://demo.gomus.de/api/v4/tours/categories"
 
 ### Response
 
+
 The JSON response contains a list of all tour categories to build up filters.
+
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.
 
@@ -60,7 +62,9 @@ curl "https://demo.gomus.de/api/v4/tours/languages"
 
 ### Response
 
+
 The JSON response contains a list of all languages used by online bookable tour products to build up filters.
+
 
 ## Tour tags
 
@@ -283,7 +287,7 @@ curl "https://demo.gomus.de/api/v4/tours"
 - by_language_ids (Array of language ids), filter by language, see languages section
 - by_categories (Array of category names), filter by categories, see categories section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
-- with_bookings_in_future (Boolean, true|false, default: all), filter tours that have bookable start times the future
+
 
 ### Available parameters:
 
@@ -650,12 +654,3 @@ The start times for a specific day contains the start time and a participants bl
 - min (integer), minimum participants needed, often 0 or 1
 - max (integer), maximum participants
 - bookable (integer), participants to book left
-
-
-
-
-
-
-
-
-
