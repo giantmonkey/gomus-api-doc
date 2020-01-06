@@ -29,7 +29,9 @@ curl "https://demo.gomus.de/api/v4/tours/categories"
 
 ### Response
 
-The json response contains a list of all tour categories to build up filters.
+
+The JSON response contains a list of all tour categories to build up filters.
+
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.
 
@@ -60,7 +62,9 @@ curl "https://demo.gomus.de/api/v4/tours/languages"
 
 ### Response
 
-The json response contains a list of all languages used by online bookable tour products to build up filters.
+
+The JSON response contains a list of all languages used by online bookable tour products to build up filters.
+
 
 ## Tour tags
 
@@ -195,7 +199,7 @@ curl "https://demo.gomus.de/api/v4/tours/grades"
 
 ### Tag responses
 
-The json response contains a list of used tour tags by category to build up filters.
+The JSON response contains a list of used tour tags by category to build up filters.
 
 
 ## List of tours
@@ -292,7 +296,7 @@ curl "https://demo.gomus.de/api/v4/tours"
 
 ### Response
 
-The json response contains a list of tours as an array and a meta block.
+The JSON response contains a list of tours as an array and a meta block.
 
 - id (integer), the unique database id of the tour
 - title (string), the name of the tour
@@ -488,7 +492,7 @@ plus additional surcharges, e.g. sunday extra, foreign language extra and so on.
 ### Response
 
 
-The json response contains the following attributes:
+The JSON response contains the following attributes:
 
 - vat_pct (float), the pricing tax rate
 - discount (integer), discount in percent (0-100) to apply on total price for this item if ordered
@@ -587,6 +591,8 @@ curl "https://demo.gomus.de/api/v4/tours/1/start_times"
 
 The start times calender for a tour provides a fast way to check when the tour has possible start times or not within a specified time range. With the default mode (`depth=any`), the return value for each day in the range specified is a simple boolean.
 
+**Note**: An unauthenticated (public) API request of this type will only return a result if the corresponding product has the sales channel "Shop und Reseller" activated.
+
 ### Available parameters:
 
 - start_at (`YYYY-MM-DD`), defaults to today
@@ -634,6 +640,7 @@ curl "https://demo.gomus.de/api/v4/tours/1/start_times/2016-07-26"
 }
 ```
 
+**Note**: An unauthenticated (public) API request of this type will only return a result if the corresponding product has the sales channel "Shop und Reseller" activated.
 
 ### Available parameters:
 
