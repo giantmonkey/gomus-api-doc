@@ -29,7 +29,7 @@ curl "https://demo.gomus.de/api/v4/tours/categories"
 
 ### Response
 
-The json response contains a list of all tour categories to build up filters. 
+The json response contains a list of all tour categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.
 
@@ -60,7 +60,7 @@ curl "https://demo.gomus.de/api/v4/tours/languages"
 
 ### Response
 
-The json response contains a list of all languages used by online bookable tour products to build up filters. 
+The json response contains a list of all languages used by online bookable tour products to build up filters.
 
 ## Tour tags
 
@@ -283,7 +283,7 @@ curl "https://demo.gomus.de/api/v4/tours"
 - by_language_ids (Array of language ids), filter by language, see languages section
 - by_categories (Array of category names), filter by categories, see categories section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
-- with_bookings_in_future (Boolean, true|false, default: all), filter tours that have bookable start times the future
+
 
 ### Available parameters:
 
@@ -312,7 +312,7 @@ plus blocks of attributes for category, picture, location and audiences.
 curl "https://demo.gomus.de/api/v4/tours/1"
 ```
 
-The information is the same as that of the tours list response, but with the addition of the description 
+The information is the same as that of the tours list response, but with the addition of the description
 key and some other attributes like the dynamic content attributes
 If tour is registerable and an authenticatable user has the permission, this attribute contains a link to the public
 registration form.
@@ -367,7 +367,7 @@ curl "https://demo.gomus.de/api/v4/tours/1/equipments?date=2017-06-11"
 ### Response
 
 The Response contains  maximal available count by date for each equipment category for this tour
-                      
+
 ## Equipment details for a tour
 
 Equipment details for a tour can be accessed like this:
@@ -402,9 +402,9 @@ curl "https://demo.gomus.de/api/v4/tours/1/equipments/1/?date=2017-06-11"
 ### Response
 
 The Response contains  maximal available count by date for the specific equipment category for this tour
-                 
 
-                      
+
+
 ## Equipment timestamp details for a tour
 
 Equipment details for a tour based on a specific timestamp can be accessed like this:
@@ -429,7 +429,7 @@ curl "https://demo.gomus.de/api/v4/tours/1/equipments/1/2017-06-11T11:00:00+02:0
 ### Response
 
 The Response contains  maximal available count by date for the specific equipment category for this tour at a specific timestamp.
-                 
+
 
 
 ## Prices for a tour
@@ -484,7 +484,7 @@ plus additional surcharges, e.g. sunday extra, foreign language extra and so on.
 - customer_adress_id, defaults to null. Neccessary for predetermined discounts
 - price_target_audience_id_id (integer), defaults to default PTA (e.g. "Privatkunde")
 - language_id (integer), defaults to first assigned language of the tour
-  
+
 ### Response
 
 
@@ -647,12 +647,3 @@ The start times for a specific day contains the start time and a participants bl
 - min (integer), minimum participants needed, often 0 or 1
 - max (integer), maximum participants
 - bookable (integer), participants to book left
-
-
-
-
-
-
-
-
-
