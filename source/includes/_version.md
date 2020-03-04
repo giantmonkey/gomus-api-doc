@@ -6,7 +6,7 @@ The system and api version is available at each instance:
 
 `GET https://demo.gomus.de/api/v4/version`
 
-**Note**: The pagination limit (`per_page`) defaults to `100` for an authenticated api user
+**Note**: The pagination limit (maximum value accepted for the `per_page` parameter) is by default set to `100` for authenticated api requests and to `25` for unauthenticated api requests.
 
 ```shell
 curl "https://demo.gomus.de/api/v4/version"
