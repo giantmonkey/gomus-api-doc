@@ -262,7 +262,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key. For testi
 
 <p><code class="prettyprint">GET https://demo.gomus.de/api/v4/version</code></p>
 
-<p><strong>Note</strong>: The pagination limit (<code class="prettyprint">per_page</code>) defaults to <code class="prettyprint">100</code> for an authenticated api user</p>
+<p><strong>Note</strong>: The pagination limit (maximum value accepted for the <code class="prettyprint">per_page</code> parameter) is by default set to <code class="prettyprint">100</code> for authenticated api requests and to <code class="prettyprint">25</code> for unauthenticated api requests.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/version"</span>
 </code></pre>
 
