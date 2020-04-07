@@ -7,6 +7,7 @@ toc_footers:
 
 includes:
   - v4/reservations
+  - v4/annual_tickets
   - errors
 
 search: true
