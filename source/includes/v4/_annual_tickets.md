@@ -1,6 +1,6 @@
 # Annual Tickets
 
-After the purchase of an annual ticket, the customer receives an e-mail with a link to the shop with a token. Only one personalization will be allowed per `ticket_sale`. You can personalize with `customer` and `customer_address` which are belong to each `order` or the personalization can reference other customer or none at all.
+After the purchase of annual ticket(s), the customer receives an e-mail with a link to the shop with a token. The order contains annual ticket(s) and each annual ticket has one or more personalization(s). You can personalize with `customer` and `customer_address` which are belong to each `order` or the personalization can reference other customer or none at all.
 
 ## Find an order
 
@@ -122,6 +122,42 @@ curl "https://demo.gomus.de/api/v4/annual/customers?token=:token"
 - addr_street (string)
 - addr_zip (string)
 
+### Response
+
+> The response of the above request returns JSON structured like this:
+
+```json
+{
+    "customer": {
+        "id": 146,
+        "name": "Peter",
+        "surname": "Pan",
+        "email": "peter@giantmonkey.de",
+        "salutation_id": 1,
+        "addresses": [
+            {
+                "id": 151,
+                "zip": "10119",
+                "street": "Brunnenstraße 7D",
+                "country_id": 60,
+                "city": "Berlin"
+            }
+        ],
+        "personalization_token": "13fe3a0d-5983-4db5-a316-eef2f0da8603"
+    }
+}
+```
+
+The JSON response contains a data of the customer you added.
+
+- id (integer), the unique database id of the customer
+- name (string), the first name of the customer
+- surname (string), the last name of the customer
+- email (string), the email address of the customer
+- salutation_id (integer), the unique database id of the salutation for the customer
+- addresses (object `customer_addresses`, array of the addresses of the customer), contains id, zip, street, country_id and city
+- personalization_token (string), the unique identifier generated randomly for each customer
+
 
 
 ## Update personalization
@@ -141,7 +177,7 @@ curl "https://demo.gomus.de/api/v4/annual/personalizations/:id?token=:token"
 {
   "personalization": {
     "customer_personalization_token": "13fe3a0d-5983-4db5-a316-eef2f0da8603",
-    "customer_adress_id": 44
+    "customer_adress_id": 151
   }
 }
 ```
