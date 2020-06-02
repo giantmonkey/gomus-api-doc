@@ -454,7 +454,8 @@ curl "https://demo.gomus.de/api/v4/tours/1/prices"
             "description": "Gruppenpreis",
             "group": true,
             "optional": false,
-            "price_cents": 9000
+            "price_cents": 9000,
+            "vat_pct": 0.00
         },
         {
             "price_surcharge_id": 1,
@@ -462,7 +463,8 @@ curl "https://demo.gomus.de/api/v4/tours/1/prices"
             "description": "für Sonn- und Feiertage",
             "group": true,
             "optional": true,
-            "price_cents": 300
+            "price_cents": 300,
+            "vat_pct": 0.00
         }
     ],
     "vat_pct": 0.0,
@@ -504,13 +506,14 @@ and an array of "prices", see below.
 
 The prices block contains one or more price object in an array. There are four types of prices for tour bookings:
 
-default prices with three attributes:
+default prices with four attributes:
 
 - group (boolean), whether the price is for the whole group or per participant (per seat)
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
+- vat_pct (float), the pricing tax rate
 
-or scale prices with six attributes:
+or scale prices with seven attributes:
 
 - scale_price_id (integer) internal database id for the scale price definition
 - title (string) title of the scale price, e.g. "regular fee" or "reduced fee"
@@ -518,14 +521,16 @@ or scale prices with six attributes:
 - group (boolean), whether the price is for the whole group or per participant (per seat)
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
+- vat_pct (float), the pricing tax rate
 
-or customer type related prices with five attributes:
+or customer type related prices with six attributes:
 
 - title(string) title of price, e.g. "Entgelt" or "Pauschale"
 - description(text)
 - group (boolean), whether the price is for the whole group or per participant (per seat)
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
+- vat_pct (float), the pricing tax rate
 
 
 Usualy, only one of the three above occurs per tour. The tour might also be configured with one or more surcharges:
@@ -537,6 +542,7 @@ Usualy, only one of the three above occurs per tour. The tour might also be conf
 - group (boolean), whether the price is for the whole group or per participant (per seat)
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
+- vat_pct (float), the pricing tax rate
 
 
 ## Start times
