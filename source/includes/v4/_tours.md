@@ -533,7 +533,7 @@ or customer type related prices with six attributes:
 - vat_pct (float), the pricing tax rate
 
 
-Usualy, only one of the three above occurs per tour. The tour might also be configured with one or more surcharges:
+Usualy, only one of the three above occurs per tour. The tour might also be configured with one or more surcharges*:
 
 
 - price_surcharge_id (integer) internal database id for the surcharge definition
@@ -542,7 +542,8 @@ Usualy, only one of the three above occurs per tour. The tour might also be conf
 - group (boolean), whether the price is for the whole group or per participant (per seat)
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
-- vat_pct (float), the pricing tax rate
+
+* Each surcharge will also display a relevant vat_pct amount (float) of the pricing tax rate.
 
 
 ## Start times
