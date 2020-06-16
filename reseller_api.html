@@ -1014,6 +1014,230 @@ reservation time. Note that the ticket itself must be bookable for the time of r
 
 <p>The response will have no content.</p>
 
+          <h1 id="annual-tickets">Annual Tickets</h1>
+
+<p>After the purchase of annual ticket(s), the customer receives an e-mail with a link to the shop with a token. The order contains annual ticket(s) and each annual ticket has one or more personalization(s). You can personalize with <code class="prettyprint">customer</code> and <code class="prettyprint">customer_address</code> which are belong to each <code class="prettyprint">order</code> or the personalization can reference other customer or none at all.</p>
+
+<h2 id="find-an-order">Find an order</h2>
+
+<p><code class="prettyprint">GET https://demo.gomus.de/api/v4/annual/order?token=:token</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/annual/order?token=:token"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bärbel"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monkey"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"baerbel@giantmonkey.de"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"salutation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10119"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brunnstr. 7d"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"shipping_address_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ticket_sales"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jahreskarte"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-16T00:00:10+01:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ready_to_send"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_personalizable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"personalizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ready"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adrian"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fuhrmann"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adrian@giantmonkey.de"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"salutation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10119"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brunnenstr. 7D"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"address_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"dispatch_mode_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>The JSON response contains a data of an order you requested.</p>
+
+<ul>
+<li>id (integer), the unique database id of the order</li>
+<li>customer (object, the buyer of the order), contains id, name, e-mail address, salutation_id and adresses (array)</li>
+<li>addresses (object <code class="prettyprint">customer_addresses</code>, array of the addresses of the buyer of the order), contains id, zip, street, country_id and city</li>
+<li>shipping_address_id (integer), the unique database id of the shipping address</li>
+<li>ticket_sales (array of ticket_sales), contains id, title, description, start_at, sent_at, status, is_personalizable (boolean) and personalizations</li>
+<li>personalizations (object), contains id, customer (object, on whom this annual ticket is personalized), customer_addresses (array of all addresses of the customer), address_id (integer, the address of the customer who is personalized to this annual ticket) and dispatch_mode_id (integer)</li>
+</ul>
+
+<h2 id="create-new-customer">Create new customer</h2>
+
+<p>Create new <code class="prettyprint">customer</code> and <code class="prettyprint">customer_address</code> if the buyer wants to personalize the ticket for another customer.</p>
+
+<p><code class="prettyprint">POST https://demo.gomus.de/api/v4/annual/customers?token=:token</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/annual/customers?token=:token"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command assumes the JSON is structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pan"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peter@giantmonkey.de"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_salutation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"addr_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"addr_country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"addr_street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brunnenstraße 7D"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"addr_zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10119"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="required-attributes">Required attributes</h3>
+
+<ul>
+<li>name (string)</li>
+<li>surname (string)</li>
+<li>email (string)</li>
+<li>customer_salutation_id (integer)</li>
+<li>addr_city (string)</li>
+<li>addr_country_id (integer)</li>
+<li>addr_street (string)</li>
+<li>addr_zip (string)</li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<blockquote>
+<p>The response of the above request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pan"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peter@giantmonkey.de"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"salutation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">151</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10119"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brunnenstraße 7D"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"country_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"personalization_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13fe3a0d-5983-4db5-a316-eef2f0da8603"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The JSON response contains a data of the customer you added.</p>
+
+<ul>
+<li>id (integer), the unique database id of the customer</li>
+<li>name (string), the first name of the customer</li>
+<li>surname (string), the last name of the customer</li>
+<li>email (string), the email address of the customer</li>
+<li>salutation_id (integer), the unique database id of the salutation for the customer</li>
+<li>addresses (object <code class="prettyprint">customer_addresses</code>, array of the addresses of the customer), contains id, zip, street, country_id and city</li>
+<li>personalization_token (string), the unique identifier generated randomly for each customer</li>
+</ul>
+
+<h2 id="update-personalization">Update personalization</h2>
+
+<p>The existing personalization can be updated (the customer and the address can be changed).
+dispatch_mode_id is also accepted.</p>
+
+<p><code class="prettyprint">PUT https://demo.gomus.de/api/v4/annual/personalizations/:id?token=:token</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/annual/personalizations/:id?token=:token"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command assumes the JSON is structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"personalization"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"customer_personalization_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13fe3a0d-5983-4db5-a316-eef2f0da8603"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_adress_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">151</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="required-attributes">Required attributes</h3>
+
+<ul>
+<li>customer_personalization_token (string), the unique identifier generated randomly for each customer</li>
+<li>customer_adress_id (integer), the unique database id of the customer_adress</li>
+</ul>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>dispatch_mode_id (integer), the unique database id of the dispatch_mode</li>
+</ul>
+
+<h2 id="update-a-ticket-sale">Update a Ticket Sale</h2>
+
+<p>The start time (<code class="prettyprint">start_at</code>) of the annual ticket can be changed.</p>
+
+<p><code class="prettyprint">PUT https://demo.gomus.de/api/v4/annual/ticket_sales/:id?token=:token</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://demo.gomus.de/api/v4/annual/ticket_sales/:id?token=:token"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command assumes the JSON is structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"ticket_sale"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-12 10:00:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="required-attributes">Required attributes</h3>
+
+<ul>
+<li>start_at (datetime)</li>
+</ul>
+
+<h3 id="available-parameters">Available parameters:</h3>
+
+<ul>
+<li>dispatch_mode_id (integer), the unique database id of the dispatch_mode</li>
+</ul>
+
           <h1 id="errors">Errors</h1>
 
 <p>The go~mus API uses the following error codes:</p>
