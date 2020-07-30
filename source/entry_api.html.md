@@ -125,6 +125,59 @@ curl "https://demo.gomus.de/api/v4/entry/scans/3"
 
 The JSON response contains a serialized scan event.
 
+## Entry API - Config
+
+This API provides a basic configuration of a scanner devise with colors and texts for each entry zone.
+
+### Showing a configuration of a scanner devise
+
+`GET https://demo.gomus.de/api/v4/entry/config`
+
+### Required parameters:
+
+- id of the entry zone (string), the unique database id of the entry zone
+
+```shell
+curl "https://demo.gomus.de/api/v4/entry/config?entry_zone=RW50cnlab25lLTAyUmhtWP=="
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "config": {
+    "id": "RW50cnlab25lLTAyUmhtWP==",
+    "name": "B7D",
+    "settings": {
+      "primary_color": "#1AB394",
+      "headline": "go~mus",
+      "background_color": "#F5F5F5",
+      "background_color_valid": "#1CAC26",
+      "background_color_warning": "#F8C81C",
+      "default_panel_color": "#FFFFFF",
+      "warning_panel_color": "#AE0015",
+      "warning_text_color": "#FFFFFF",
+      "text_color": "#4A4A4A",
+      "button_default_color": "#4A4A4A",
+      "button_default_filling": "#F5F5F5",
+      "button_info_color": "#00608",
+      "button_info_filling": "#F5F5F5",
+      "button_warning_color": "#AE0015",
+      "button_warning_filling": "#F5F5F5"
+    }
+  }
+}
+```
+
+### Response
+
+The JSON response contains a basic config of a scanner devise depending on the provided entry zone.
+
+- id (string), the unique database id of the entry zone
+- name (string), the name of the entry zone
+- settings, basic settings of colors and texts
+
+**Note**: The color codes of settings should be wrapped with quotes ("")
+
 
 ## Exit API - Tracking exits
 
@@ -162,4 +215,3 @@ You can transmit these parameters in the URL. For example:
 When using turnstiles it is best practice to only void the barcode if the visitor actually goes through.
 In some cases the visitor may scan his ticket barcode but then not walk through.
 He should be able to re-scan his ticket barcode and then walk through.
-
