@@ -233,6 +233,7 @@ curl "https://demo.gomus.de/api/v4/tours"
                 "title": null,
                 "description": null,
                 "copyright_info": null,
+                "original": "../original/hintergrund_grau.jpg",
                 "teaser": "../teaser/hintergrund_grau.jpg",
                 "preview": "../preview/hintergrund_grau.jpg",
                 "article": "../article/hintergrund_grau.jpg",
