@@ -57,6 +57,7 @@ curl "https://demo.gomus.de/api/v4/orders"
             "rating": null,
             "invoice": false,
             "created_at": "2016-03-28T22:17:46+02:00",
+            "source": "resellershop",
             "items": [ ... ]
         }
   ],
@@ -88,6 +89,7 @@ The JSON response contains a list of existing orders as an array and a meta bloc
 - rating (integer), a simple amazon style rating value
 - invoice (boolean), whether an invoice is available or not
 - created_at (date), timestamp on creation
+- source (text), the source of the order creation
 - items (array), list of order items, see order items section
 
 ## Details of a single order
