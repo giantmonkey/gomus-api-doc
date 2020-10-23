@@ -1,6 +1,6 @@
 # Ticket Reservations
 
-Tickets can be (short term) reserved for 5 minutes each. The reservation can be updated (and refreshed) for a max of 60 minutes 
+Tickets can be (short term) reserved for 5 minutes each. The reservation can be updated (and refreshed) for a max of 60 minutes
 reservation time. Note that the ticket itself must be bookable for the time of reservation.
 
 ### Creating a reservation
@@ -22,21 +22,22 @@ curl "https://demo.gomus.de/api/v4/tickets/reservations"
 
 ```json
   {
-      "reservation": 
+      "reservation":
           {
               "ticket_id": 247,
               "quantity": 5,
               "start_at": "2016-09-25T16:00:00+02:00"
          }
-       
+
    }
 ```
 
 The response will contain the reservation object or an error.
 
-### Response
+**Note**:
 
-The response is a data block, which contains the validity information like this:
+- The reservations for combination tickets are not possible.
+- A reservation does not guarantee a successful booking. It may fail if another sales channel has priority.
 
 
 ```json
@@ -71,7 +72,7 @@ curl "https://demo.gomus.de/api/v4/tickets/reservations/:token"
 
 ```json
 {
-	
+
     "reservation":
         {
             "quantity": 10
@@ -101,4 +102,3 @@ curl "https://demo.gomus.de/api/v4/tickets/reservations/:token"
 ```
 
 The response will have no content.
-
